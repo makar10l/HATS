@@ -1,8 +1,11 @@
 #include <iostream>
 #include <string>
-#include "textures/textures.h"
+#include "hat.hpp"
+
 int main(){
-    std::cout << santa_hat << "\n\n\n";
-    std::cout << farmer_hat;
+    hats hat;
+    hat.set_texture(santa_hat);
+    hats f_hat;
+    hat.set_texture(farmer_hat);
     return 0;
 }

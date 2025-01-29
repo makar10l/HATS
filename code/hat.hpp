@@ -3,13 +3,12 @@ class hats{
     
 public:
     void attack(int damage){
-        std::cout << "Size for attack your HAT is" << damage << std::endl;
+        std::cout << "Size for attack your HAT is: " << damage << std::endl;
     }
 
-    void break_hat(int hp, int damage){
-        hp -= damage;
-        std::cout << "Your HAT start broke, HP your HAT:" << hp << std::endl;
-        
+    void break_hat(int* hp, int damage){
+        *hp -= damage;
+        std::cout << "Your HAT start broke, HP your HAT:" << *hp << std::endl;
     }  
 
     void info(int hp, int damage){
@@ -33,6 +32,9 @@ class farmer_hat: public hats{
             std::cout << "\t\tITS YOUR HAT" << std::endl  << texture_cp;
             info(hp, damage);
         }
+        int safe(int hp){
+            return hp;
+        }
 };
 class santa_hat: public hats{
     private:   
@@ -50,6 +52,9 @@ class santa_hat: public hats{
             std::cout << "\t\tITS YOUR HAT" << std::endl  << texture_cp;
             info(hp, damage);
         }
+        int safe(int hp){
+            return hp;
+        }
 };
 class joker_hat: public hats{ 
     private:    
@@ -61,8 +66,11 @@ class joker_hat: public hats{
         std::string texture_cp = joke_hat_copy;
         const int damage_pub = damage;
 
-        joker_hat(){                       
+        joker_hat(){                        
             std::cout << "\t\tITS YOUR HAT" << std::endl  << texture_cp;
             info(hp, damage);
+        }
+        int safe(int hp){
+            return hp;
         }
 };

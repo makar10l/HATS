@@ -1,2 +1,3 @@
-win.exe
+cls
+win
 pause

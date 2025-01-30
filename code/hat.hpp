@@ -8,7 +8,7 @@ public:
 
     void break_hat(int* hp, int damage){
         *hp -= damage;
-        std::cout << "Your HAT start broke, HP your HAT:" << *hp << std::endl;
+        std::cout << "Your HAT start broking, HP your HAT:" << *hp << std::endl;
     }  
 
     void info(int hp, int damage){
@@ -19,9 +19,9 @@ public:
 
 class farmer_hat: public hats{
     private:   
-        int damage = 10;
+        int damage = 5;
     public:
-        int hp = 20;
+        int hp = 75;
 
         const int damage_pub = damage;
 
@@ -38,10 +38,10 @@ class farmer_hat: public hats{
 };
 class santa_hat: public hats{
     private:   
-        int damage = 10;
+        int damage = 15;
 
     public:
-        int hp = 20;
+        int hp = 25;
 
         const int damage_pub = damage;
 
@@ -58,10 +58,10 @@ class santa_hat: public hats{
 };
 class joker_hat: public hats{ 
     private:    
-        int damage = 10; 
+        int damage = 100; 
 
     public:
-        int hp = 20;
+        int hp = 1;
         std::string texture = joke_hat;
         std::string texture_cp = joke_hat_copy;
         const int damage_pub = damage;

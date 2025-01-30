@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include "hats\hat.hpp"
+#include "hat.hpp"
+#include "getch/linux_getch.hpp"
 
 int main(){
     farmer_hat my_hat;
@@ -9,5 +10,6 @@ int main(){
     my_hat.attack(my_hat.damage_pub);
     hp++;
     std::cout << hp;
+    getch();
     return 0;
 }

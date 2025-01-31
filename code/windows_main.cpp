@@ -3,20 +3,24 @@
 #include "hat.hpp"
 #include "menu/windows_main_menu.hpp"
 #include "textures/toe.hpp"
+#include "player.hpp"
+int x = 1;
+int y = 1;
 int main(){
-    int PorQ = menu();
-    if(PorQ == 0){
-        farmer_hat my_hat;
-        getch();
-        for(int y = 0; y < Y_SIZE; y++){
-            for(int x = 0; x < X_SIZE; x++){
-                std::cout << toe[y][x];
-            }
-            std::cout << "\n";
-        }
+    std::string mode = menu();
+    if(mode == "farmer"){
+        farmer_hat my_hat;        
     }
-    else{
-        return 1;
+      if(mode == "joker"){
+        joker_hat my_hat;        
     }
+      if(mode == "santa"){
+        santa_hat my_hat;        
+    }
+    toe.out(x,y);
+    x,y = walk_to(1,x,y);
+    std::cout << x << "   " << y;
+    getch();
+    toe.out(x,y);
     return 0;
 }

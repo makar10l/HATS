@@ -17,10 +17,15 @@ int main(){
       if(mode == "santa"){
         santa_hat my_hat;        
     }
+    while(1){
     toe.out(x,y);
-    x,y = walk_to(1,x,y);
-    std::cout << x << "   " << y;
-    getch();
+    int dir;
+    std::cout << "Enter DIRECTIION:";
+    std::cin >> dir;
+    coords xy = walk_to(dir);
+    x = xy.x;
+    y = xy.y;
     toe.out(x,y);
+    }
     return 0;
 }

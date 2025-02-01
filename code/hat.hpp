@@ -94,48 +94,8 @@ class hats{
     }  
 
     void info(int hp, int damage){
+        std::cout << "\t\tTHIS IS YOUR HAT:\n\n" << texture_cp;
         std::cout << "\nYour HAT HP:" << hp << std::endl;
         std::cout << "Your HAT damage:" << damage << std::endl;
     }
-    int safe(int hp){
-            return hp;
-    }
-};
-
-class farmer_hat: public hats{
-    public:
-        farmer_hat(){
-            hats::texture = farm_hat;
-            hats::texture_cp = farm_hat_copy;
-            hats::hp = 75;
-            hats::damage = 5;
-            std::cout << "\t\tITS YOUR HAT" <<std::endl <<"\033[105m"<<hats::texture_cp<<"\033[00m";
-            info(hats::hp, hats::damage);
-           
-        }
-        
-};
-class santa_hat: public hats{ 
-    public:       
-        santa_hat(){
-            hats::texture = santas_hat;
-            hats::texture_cp = santas_hat_copy;
-            hats::hp = 25;
-            hats::damage = 15;
-            std::cout << "\t\tITS YOUR HAT" << std::endl  << hats::texture_cp;
-            info(hats::hp, hats::damage);
-            
-        }
-};
-class joker_hat: public hats{ 
-    public:
-        joker_hat(){
-            hats::hp = 1;
-            hats::texture = joke_hat;
-            hats::texture_cp = joke_hat_copy;
-            hats::damage = 100;                         
-            std::cout << "\t\tITS YOUR HAT" << std::endl  << hats::texture_cp;
-            info(hats::hp, hats::damage);
-            
-        }
-};
+}; 

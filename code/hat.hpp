@@ -41,48 +41,52 @@ coords walk_to(int dir){
     }
     return x_y;
 }
-class hats{   
-    
-public:
-    void attack(int damage, coords x_y, int dir){
-        switch(dir){
-            case 0:
-                for(int i = x_y.y - 1; i > 0; i--){
-                    toe.toe_e[i][x_y.x] = '@';
-                    usleep(SPEED);
-                    toe.out(x_y.x, x_y.y);
-                    toe.toe_e[i][x_y.x] = '.';
-                }
-            break;
 
-            case 1:
-                for(int i = x_y.y + 1; i < 6; i++){
-                    toe.toe_e[i][x_y.x] = '@';
-                    usleep(SPEED);
-                    toe.out(x_y.x, x_y.y);
-                    toe.toe_e[i][x_y.x] = '.';
-                }
-            break;
+class hats{      
+    public:
+        int hp;
+        int damage;
+        std::string texture;
+        std::string texture_cp;
+        void attack(int damage, coords x_y, int dir){
+            switch(dir){
+                case 0:
+                    for(int i = x_y.y - 1; i > 0; i--){
+                        toe.toe_e[i][x_y.x] = '@';
+                        usleep(SPEED);
+                        toe.out(x_y.x, x_y.y);
+                        toe.toe_e[i][x_y.x] = '.';
+                    }
+                break;
 
-            case 2:
-                for(int i = x_y.x - 1; i > 0; i--){
-                    toe.toe_e[x_y.y][i] = '@';
-                    usleep(SPEED);
-                    toe.out(x_y.x, x_y.y);
-                    toe.toe_e[x_y.y][i] = '.';                
-                }
-            break;
+                case 1:
+                    for(int i = x_y.y + 1; i < 6; i++){
+                        toe.toe_e[i][x_y.x] = '@';
+                        usleep(SPEED);
+                        toe.out(x_y.x, x_y.y);
+                        toe.toe_e[i][x_y.x] = '.';
+                    }
+                break;
 
-            case 3:
-                for(int i = x_y.x + 1; i < 12; i++){
-                    toe.toe_e[x_y.y][i] = '@';
-                    usleep(SPEED);
-                    toe.out(x_y.x, x_y.y);
-                    toe.toe_e[x_y.y][i] = '.'; 
-                }
-            break;
+                case 2:
+                    for(int i = x_y.x - 1; i > 0; i--){
+                        toe.toe_e[x_y.y][i] = '@';
+                        usleep(SPEED);
+                        toe.out(x_y.x, x_y.y);
+                        toe.toe_e[x_y.y][i] = '.';                
+                    }
+                break;
+
+                case 3:
+                    for(int i = x_y.x + 1; i < 12; i++){
+                        toe.toe_e[x_y.y][i] = '@';
+                        usleep(SPEED);
+                        toe.out(x_y.x, x_y.y);
+                        toe.toe_e[x_y.y][i] = '.'; 
+                    }
+                break;
+            }
         }
-    }
 
     void break_hat(int* hp, int damage){
         *hp -= damage;
@@ -99,51 +103,39 @@ public:
 };
 
 class farmer_hat: public hats{
-    private:   
-        int damage = 5;
     public:
-        int hp = 75;
-
-        const int damage_pub = damage;
-
-        std::string texture = farm_hat;
-        std::string texture_cp = farm_hat_copy;
-
         farmer_hat(){
-            std::cout << "\t\tITS YOUR HAT" <<std::endl <<"\033[105m"<<texture_cp<<"\033[00m";
-            info(hp, damage);
+            hats::texture = farm_hat;
+            hats::texture_cp = farm_hat_copy;
+            hats::hp = 75;
+            hats::damage = 5;
+            std::cout << "\t\tITS YOUR HAT" <<std::endl <<"\033[105m"<<hats::texture_cp<<"\033[00m";
+            info(hats::hp, hats::damage);
+           
         }
         
 };
-class santa_hat: public hats{
-    private:   
-        int damage = 15;
-
-    public:
-        int hp = 25;
-
-        const int damage_pub = damage;
-
-        std::string texture = santas_hat;
-        std::string texture_cp = santas_hat_copy;
-
+class santa_hat: public hats{ 
+    public:       
         santa_hat(){
-            std::cout << "\t\tITS YOUR HAT" << std::endl  << texture_cp;
-            info(hp, damage);
+            hats::texture = santas_hat;
+            hats::texture_cp = santas_hat_copy;
+            hats::hp = 25;
+            hats::damage = 15;
+            std::cout << "\t\tITS YOUR HAT" << std::endl  << hats::texture_cp;
+            info(hats::hp, hats::damage);
+            
         }
 };
 class joker_hat: public hats{ 
-    private:    
-        int damage = 100; 
-
     public:
-        int hp = 1;
-        std::string texture = joke_hat;
-        std::string texture_cp = joke_hat_copy;
-        const int damage_pub = damage;
-
-        joker_hat(){                        
-            std::cout << "\t\tITS YOUR HAT" << std::endl  << texture_cp;
-            info(hp, damage);
+        joker_hat(){
+            hats::hp = 1;
+            hats::texture = joke_hat;
+            hats::texture_cp = joke_hat_copy;
+            hats::damage = 100;                         
+            std::cout << "\t\tITS YOUR HAT" << std::endl  << hats::texture_cp;
+            info(hats::hp, hats::damage);
+            
         }
 };

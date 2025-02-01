@@ -1,26 +1,36 @@
 #include <iostream>
 #include <string>
 #include "hat.hpp"
-#include "getch.hpp"
+#include "getchar.hpp"
 #include "menu/main_menu.hpp"
+
 int x;
 int y;
 int main(){
-    hats my_hat;
+    hats hat;
     std::string mode = menu();
+
     if(mode == "farmer"){
-        farmer_hat my_hat;        
+        farmer_hat hatk;        
     }
-      if(mode == "joker"){
-        joker_hat my_hat;        
+
+    if(mode == "joker"){
+        joker_hat hatk;        
     }
-      if(mode == "santa"){
-        santa_hat my_hat;        
+
+    if(mode == "santa"){
+        santa_hat hatk;        
     }
+
+    getch();
+
     toe.out();
+
     while(1){
-      
+      hat.info(hat.hp, hat.damage);
+      getch();
       int dir;
+      toe.out();
       std::cout << "Enter DIRECTION:";
       std::cin >> dir;
       if(dir == 0 || dir == 1 || dir == 2 || dir == 3){
@@ -32,7 +42,7 @@ int main(){
         toe.out();
         std::cout << "Enter DIRECTION bullet:";
         std::cin >> dir;
-        my_hat.attack(10, x_y, dir);
+        hat.attack(10, x_y, dir);
       }
       toe.out(x,y);
     }

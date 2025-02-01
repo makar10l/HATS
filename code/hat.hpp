@@ -44,8 +44,8 @@ coords walk_to(int dir){
 class hats{   
     
 public:
-    void attack(int damage, coords x_y){
-        switch(x_y.dir){
+    void attack(int damage, coords x_y, int dir){
+        switch(dir){
             case 0:
                 for(int i = x_y.y - 1; i > 0; i--){
                     toe.toe_e[i][x_y.x] = '@';
@@ -65,13 +65,21 @@ public:
             break;
 
             case 2:
-            for(int i = x_y.x - 1; i > 0; i--){
-                toe.toe_e[x_y.y][i] = '@';
-                usleep(SPEED);
-                toe.out(x_y.x, x_y.y);
-                toe.toe_e[x_y.y][i] = '.';
-                
-            }
+                for(int i = x_y.x - 1; i > 0; i--){
+                    toe.toe_e[x_y.y][i] = '@';
+                    usleep(SPEED);
+                    toe.out(x_y.x, x_y.y);
+                    toe.toe_e[x_y.y][i] = '.';                
+                }
+            break;
+
+            case 3:
+                for(int i = x_y.x + 1; i < 12; i++){
+                    toe.toe_e[x_y.y][i] = '@';
+                    usleep(SPEED);
+                    toe.out(x_y.x, x_y.y);
+                    toe.toe_e[x_y.y][i] = '.'; 
+                }
             break;
         }
     }

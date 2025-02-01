@@ -21,7 +21,7 @@ int main(){
     while(1){
       
       int dir;
-      std::cout << "Enter DIRECTIION:";
+      std::cout << "Enter DIRECTION:";
       std::cin >> dir;
       if(dir == 0 || dir == 1 || dir == 2 || dir == 3){
         coords xy = walk_to(dir);
@@ -29,7 +29,10 @@ int main(){
         y = xy.y;
       }
       else{
-        my_hat.attack(10, x_y);
+        toe.out();
+        std::cout << "Enter DIRECTION bullet:";
+        std::cin >> dir;
+        my_hat.attack(10, x_y, dir);
       }
       toe.out(x,y);
     }

@@ -1,6 +1,8 @@
 #include "textures/textures.h"
 #include "toe.hpp"
 #include <unistd.h>
+
+#define SPEED 500000
 toe toe;
 struct coords{
     int x = 1;
@@ -47,8 +49,30 @@ public:
             case 0:
                 for(int i = x_y.y - 1; i > 0; i--){
                     toe.toe_e[i][x_y.x] = '@';
-                    sleep(0.25);
+                    usleep(SPEED);
+                    toe.out(x_y.x, x_y.y);
+                    toe.toe_e[i][x_y.x] = '.';
                 }
+            break;
+
+            case 1:
+                for(int i = x_y.y + 1; i < 6; i++){
+                    toe.toe_e[i][x_y.x] = '@';
+                    usleep(SPEED);
+                    toe.out(x_y.x, x_y.y);
+                    toe.toe_e[i][x_y.x] = '.';
+                }
+            break;
+
+            case 2:
+            for(int i = x_y.x - 1; i > 0; i--){
+                toe.toe_e[x_y.y][i] = '@';
+                usleep(SPEED);
+                toe.out(x_y.x, x_y.y);
+                toe.toe_e[x_y.y][i] = '.';
+                
+            }
+            break;
         }
     }
 
@@ -60,6 +84,9 @@ public:
     void info(int hp, int damage){
         std::cout << "\nYour HAT HP:" << hp << std::endl;
         std::cout << "Your HAT damage:" << damage << std::endl;
+    }
+    int safe(int hp){
+            return hp;
     }
 };
 
@@ -78,9 +105,7 @@ class farmer_hat: public hats{
             std::cout << "\t\tITS YOUR HAT" <<std::endl <<"\033[105m"<<texture_cp<<"\033[00m";
             info(hp, damage);
         }
-        int safe(int hp){
-            return hp;
-        }
+        
 };
 class santa_hat: public hats{
     private:   
@@ -98,9 +123,6 @@ class santa_hat: public hats{
             std::cout << "\t\tITS YOUR HAT" << std::endl  << texture_cp;
             info(hp, damage);
         }
-        int safe(int hp){
-            return hp;
-        }
 };
 class joker_hat: public hats{ 
     private:    
@@ -115,8 +137,5 @@ class joker_hat: public hats{
         joker_hat(){                        
             std::cout << "\t\tITS YOUR HAT" << std::endl  << texture_cp;
             info(hp, damage);
-        }
-        int safe(int hp){
-            return hp;
         }
 };

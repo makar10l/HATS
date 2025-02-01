@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "hat.hpp"
-#include "linux_getch.hpp"
+#include "getch.hpp"
 #include "menu/main_menu.hpp"
 int x;
 int y;

@@ -1,9 +1,55 @@
 #include "textures/textures.h"
+#include "toe.hpp"
+#include <unistd.h>
+toe toe;
+struct coords{
+    int x = 1;
+    int y = 1;
+    int dir;
+} x_y;
+coords walk_to(int dir){
+    x_y.dir = dir;
+    switch(dir){
+        case 0:
+            if(x_y.y >= 2){
+                toe.toe_e[x_y.y][x_y.x] = '.';
+                x_y.y--;
+            }
+            break;
+        case 1:
+            if(x_y.y < 5){
+                toe.toe_e[x_y.y][x_y.x] = '.';
+                x_y.y++;
+            }
+            break;
+        case 2:
+            if(x_y.x >= 2){
+                toe.toe_e[x_y.y][x_y.x] = '.';           
+                x_y.x--;
+            }
+            break;
+        case 3:
+            if(x_y.x < 11){
+                toe.toe_e[x_y.y][x_y.x] = '.';
+                x_y.x++;
+            }
+            break;
+        default:
+        std::cout << "wrong dir";
+    }
+    return x_y;
+}
 class hats{   
     
 public:
-    void attack(int damage){
-        std::cout << "Size for attack your HAT is: " << damage << std::endl;
+    void attack(int damage, coords x_y){
+        switch(x_y.dir){
+            case 0:
+                for(int i = x_y.y - 1; i > 0; i--){
+                    toe.toe_e[i][x_y.x] = '@';
+                    sleep(0.25);
+                }
+        }
     }
 
     void break_hat(int* hp, int damage){
@@ -29,7 +75,7 @@ class farmer_hat: public hats{
         std::string texture_cp = farm_hat_copy;
 
         farmer_hat(){
-            std::cout << "\t\tITS YOUR HAT" << std::endl  << texture_cp;
+            std::cout << "\t\tITS YOUR HAT" <<std::endl <<"\033[105m"<<texture_cp<<"\033[00m";
             info(hp, damage);
         }
         int safe(int hp){

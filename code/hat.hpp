@@ -3,17 +3,16 @@
 #include <unistd.h>
 #include <ctime>
 #define SPEED 500000
-toe toe;
-AI hatAI;
-int AIx = hatAI.x;
-int AIy = hatAI.y;
+toes toe;
 struct coords{
     int x = 1;
     int y = 1;  
     int dir;
 } x_y;   
 
-
+toes _return(){
+    return toe;
+} 
 coords walk_to(int dir){
     x_y.dir = dir;
     switch(dir){
@@ -46,9 +45,6 @@ coords walk_to(int dir){
     }
     return x_y;
 }
-AI _return(){
-    return hatAI;
-}
 class hats{      
     public:
         int hp;
@@ -61,7 +57,7 @@ class hats{
                     for(int i = y - 1; i > 0; i--){
                         toe.toe_e[i][x] = '@';
                         usleep(SPEED);
-                        toe.out(x, y, AIx,AIy);
+                        toe.out(x, y);
                         toe.toe_e[i][x] = '.';
                     }
                 break;
@@ -70,7 +66,7 @@ class hats{
                     for(int i = x_y.y + 1; i < 6; i++){
                         toe.toe_e[i][x] = '@';
                         usleep(SPEED);
-                        toe.out(x, y, AIx,AIy);
+                        toe.out(x, y);
                         toe.toe_e[i][x] = '.';
                     }
                 break;
@@ -79,7 +75,7 @@ class hats{
                     for(int i = x - 1; i > 0; i--){
                         toe.toe_e[y][i] = '@';
                         usleep(SPEED);
-                        toe.out(x, y, AIx,AIy);
+                        toe.out(x, y);
                         toe.toe_e[y][i] = '.';                
                     }
                 break;
@@ -88,7 +84,7 @@ class hats{
                     for(int i = x_y.x + 1; i < 12; i++){
                         toe.toe_e[y][i] = '@';
                         usleep(SPEED);
-                        toe.out(x, y, AIx,AIy);
+                        toe.out(x, y);
                         toe.toe_e[y][i] = '.'; 
                     }
                 break;
@@ -195,7 +191,7 @@ class AI{
             }
         }
         std::cout << dir << ":DIR";
-        hats::attack(damage, AIx, AIy, dir);       
+        attack(damage, AIx, AIy, dir);       
     }
     
 };

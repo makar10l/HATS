@@ -5,18 +5,21 @@
 #include "hat.hpp"
 AI hatAI;
 hats hat;
-int x;
-int y;
+
+int x = 1;
+int y = 1;
 int direct;
-int fight(){
-  toe.out(x,y, hatAI.x,hatAI.y);
+int fight(toes toe){
+  toe.out(x,y, hatAI.AIx,hatAI.AIy);
   std::cout << "Enter DIRECTION bullet:";
   std::cin >> direct;
-  hat.attack(10, x_y, direct);
+  hat.attack(10, x, y, direct);
   return 0;
 }
+
 int main(){
-    
+    toes toe0 = _return();
+    toe0.out(x,y, hatAI.AIx,hatAI.AIy);   
     std::string mode = menu();
 
     if(mode == "farmer"){
@@ -42,7 +45,7 @@ int main(){
 
     while(1){
       int point = 0;
-      toe.out();
+      toe0.out();
       int dir;
       std::cout << "Choice DIRECTION:";
       std::cin >> dir;
@@ -52,26 +55,26 @@ int main(){
           y = xy.y;
           point++;
           int guess;
-          toe.out(x,y, hatAI.x, hatAI.y);
+          toe0.out(x,y, hatAI.AIx, hatAI.AIy);
           std::cout << "\n\nDo you want to attack?(yes=1 no=0)?"; 
           std::cin >> guess;
           if(guess){            
-            toe.out(x,y, hatAI.x, hatAI.y);
-            fight();
+            toe0.out(x,y, hatAI.AIx, hatAI.AIy);
+            fight(toe0);
           }
       }
       else if(dir == 9){
         hat.info(hat.hp, hat.damage);
         getch();
         getch();        
-        toe.out(x,y,hatAI.x, hatAI.y);
+        toe0.out(x,y,hatAI.AIx, hatAI.AIy);
       }
       else{
-        fight();
-        toe.out(x,y,hatAI.x,hatAI.y);
+        fight(toe0);
+        toe0.out(x,y,hatAI.AIx,hatAI.AIy);
       }
       hatAI.fight();
-      toe.out(x,y,hatAI.x,hatAI.y);
+      toe0.out(x,y,hatAI.AIx,hatAI.AIy);
     }
     return 0;
 }

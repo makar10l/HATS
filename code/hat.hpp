@@ -1,18 +1,18 @@
 #include "textures/textures.h"
 #include "toe.hpp"
 #include <unistd.h>
-
+#include <ctime>
 #define SPEED 500000
 toe toe;
+AI hatAI;
+int AIx = hatAI.x;
+int AIy = hatAI.y;
 struct coords{
     int x = 1;
     int y = 1;  
     int dir;
 } x_y;   
-struct coordsAI{
-    int x = 11;
-    int y = 15;  
-} AIx_y;
+
 
 coords walk_to(int dir){
     x_y.dir = dir;
@@ -46,92 +46,56 @@ coords walk_to(int dir){
     }
     return x_y;
 }
-
+AI _return(){
+    return hatAI;
+}
 class hats{      
     public:
         int hp;
         int damage;
         std::string texture;
         std::string texture_cp;
-        void attack(int damage, coords x_y, int dir){
+        void attack(int damage, int x, int y, short dir){
             switch(dir){
                 case 0:
-                    for(int i = x_y.y - 1; i > 0; i--){
-                        toe.toe_e[i][x_y.x] = '@';
+                    for(int i = y - 1; i > 0; i--){
+                        toe.toe_e[i][x] = '@';
                         usleep(SPEED);
-                        toe.out(x_y.x, x_y.y);
-                        toe.toe_e[i][x_y.x] = '.';
+                        toe.out(x, y, AIx,AIy);
+                        toe.toe_e[i][x] = '.';
                     }
                 break;
 
                 case 1:
                     for(int i = x_y.y + 1; i < 6; i++){
-                        toe.toe_e[i][x_y.x] = '@';
+                        toe.toe_e[i][x] = '@';
                         usleep(SPEED);
-                        toe.out(x_y.x, x_y.y);
-                        toe.toe_e[i][x_y.x] = '.';
+                        toe.out(x, y, AIx,AIy);
+                        toe.toe_e[i][x] = '.';
                     }
                 break;
 
                 case 2:
-                    for(int i = x_y.x - 1; i > 0; i--){
-                        toe.toe_e[x_y.y][i] = '@';
+                    for(int i = x - 1; i > 0; i--){
+                        toe.toe_e[y][i] = '@';
                         usleep(SPEED);
-                        toe.out(x_y.x, x_y.y);
-                        toe.toe_e[x_y.y][i] = '.';                
+                        toe.out(x, y, AIx,AIy);
+                        toe.toe_e[y][i] = '.';                
                     }
                 break;
 
                 case 3:
                     for(int i = x_y.x + 1; i < 12; i++){
-                        toe.toe_e[x_y.y][i] = '@';
+                        toe.toe_e[y][i] = '@';
                         usleep(SPEED);
-                        toe.out(x_y.x, x_y.y);
-                        toe.toe_e[x_y.y][i] = '.'; 
+                        toe.out(x, y, AIx,AIy);
+                        toe.toe_e[y][i] = '.'; 
                     }
                 break;
             }
         }
-        void attack(int damage, coordsAI AIx_y, int dir){
-            switch(dir){
-                case 0:
-                    for(int i = AIx_y.y - 1; i > 0; i--){
-                        toe.toe_e[i][AIx_y.x] = '@';
-                        usleep(SPEED);
-                        toe.out(AIx_y.x, AIx_y.y);
-                        toe.toe_e[i][AIx_y.x] = '.';
-                    }
-                break;
-
-                case 1:
-                    for(int i = AIx_y.y + 1; i < 6; i++){
-                        toe.toe_e[i][AIx_y.x] = '@';
-                        usleep(SPEED);
-                        toe.out(AIx_y.x, AIx_y.y);
-                        toe.toe_e[i][AIx_y.x] = '.';
-                    }
-                break;
-
-                case 2:
-                    for(int i = AIx_y.x - 1; i > 0; i--){
-                        toe.toe_e[AIx_y.y][i] = '@';
-                        usleep(SPEED);
-                        toe.out(AIx_y.x, AIx_y.y);
-                        toe.toe_e[AIx_y.y][i] = '.';                
-                    }
-                break;
-
-                case 3:
-                    for(int i = AIx_y.x + 1; i < 12; i++){
-                        toe.toe_e[AIx_y.y][i] = '@';
-                        usleep(SPEED);
-                        toe.out(AIx_y.x, AIx_y.y);
-                        toe.toe_e[AIx_y.y][i] = '.'; 
-                    }
-                break;
-            }
-        }
-
+         
+        
     void break_hat(int* hp, int damage){
         *hp -= damage;
         std::cout << "Your HAT start broking, HP your HAT:" << *hp << std::endl;
@@ -143,3 +107,95 @@ class hats{
         std::cout << "Your HAT damage:" << damage << std::endl;
     }
 }; 
+class AI{
+    public:
+    int AIx;
+    int AIy;
+    int hp;
+    int damage;
+    std::string texture;
+    std::string texture_cp;
+    AI(){
+        int texte = 0 + rand() % 2;
+        switch(texte){
+                case 0:
+                    texture = farm_hat;
+                    texture_cp = farm_hat_copy;
+                    hp = 75;
+                    damage = 5;
+                
+                case 1:
+                    hp = 1;
+                    texture = joke_hat;
+                    texture_cp = joke_hat_copy;
+                    damage = 100; 
+                
+                case 2:
+                    texture = santas_hat;
+                    texture_cp = santas_hat_copy;
+                    hp = 25;
+                    damage = 15;  
+        } 
+    }
+    void attack(int damage, int x, int y, short dir){
+            switch(dir){
+                case 0:
+                    for(int i = y - 1; i > 0; i--){
+                        toe.toe_e[i][x] = '@';
+                        usleep(SPEED);
+                        toe.out(x, y, AIx,AIy);
+                        toe.toe_e[i][x] = '.';
+                    }
+                break;
+
+                case 1:
+                    for(int i = y + 1; i < 6; i++){
+                        toe.toe_e[i][x] = '@';
+                        usleep(SPEED);
+                        toe.out(x, y, AIx, AIy);
+                        toe.toe_e[i][x] = '.';
+                    }
+                break;
+
+                case 2:
+                    for(int i = x - 1; i > 0; i--){
+                        toe.toe_e[y][i] = '@';
+                        usleep(SPEED);
+                        toe.out(x, y, AIx, AIy);
+                        toe.toe_e[y][i] = '.';                
+                    }
+                break;
+
+                case 3:
+                    for(int i = x + 1; i < 12; i++){
+                        toe.toe_e[y][i] = '@';
+                        usleep(SPEED);
+                        toe.out(x, y, AIx, AIy);
+                        toe.toe_e[y][i] = '.'; 
+                    }
+                break;
+            }
+        }
+    char fight(){
+        short dir;
+        if(AIy == x_y.y){
+            if(AIx > x_y.x){
+                dir = 2;
+            }
+            if(AIx < x_y.x){
+                dir = 3;
+            }
+        }
+        else if(AIx == x_y.x){
+            if(AIy > x_y.y){
+                dir = 0;
+            }
+            if(AIy > x_y.y){
+                dir = 1;
+            }
+        }
+        std::cout << dir << ":DIR";
+        hats::attack(damage, AIx, AIy, dir);       
+    }
+    
+};

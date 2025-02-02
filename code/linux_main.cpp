@@ -1,16 +1,15 @@
 #include <iostream>
 #include <string>
-#include "hat.hpp"
 #include "getchar.hpp"
 #include "menu/main_menu.hpp"
-// #include "AI/AI_HAT.hpp"
-
+#include "hat.hpp"
+AI hatAI;
 hats hat;
 int x;
 int y;
 int direct;
 int fight(){
-  toe.out(x,y);
+  toe.out(x,y, hatAI.x,hatAI.y);
   std::cout << "Enter DIRECTION bullet:";
   std::cin >> direct;
   hat.attack(10, x_y, direct);
@@ -48,31 +47,31 @@ int main(){
       std::cout << "Choice DIRECTION:";
       std::cin >> dir;
       if(dir == 0 || dir == 1 || dir == 2 || dir == 3 && point < 1){
-        coords xy = walk_to(dir);
-        x = xy.x;
-        y = xy.y;
-        point++;
-        int guess;
-        toe.out(x,y);
-        std::cout << "\n\nDo you want to attack?(yes=1 no=0)?"; 
-        std::cin >> guess;
-        if(guess){
-          fight();
-          toe.out(x,y);
-        }
+          coords xy = walk_to(dir);
+          x = xy.x;
+          y = xy.y;
+          point++;
+          int guess;
+          toe.out(x,y, hatAI.x, hatAI.y);
+          std::cout << "\n\nDo you want to attack?(yes=1 no=0)?"; 
+          std::cin >> guess;
+          if(guess){            
+            toe.out(x,y, hatAI.x, hatAI.y);
+            fight();
+          }
       }
       else if(dir == 9){
         hat.info(hat.hp, hat.damage);
         getch();
         getch();        
-        toe.out(x,y);
+        toe.out(x,y,hatAI.x, hatAI.y);
       }
       else{
         fight();
-        toe.out(x,y);
+        toe.out(x,y,hatAI.x,hatAI.y);
       }
-      toe.out(x,y);
-      system("clear");
+      hatAI.fight();
+      toe.out(x,y,hatAI.x,hatAI.y);
     }
     return 0;
 }

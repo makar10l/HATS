@@ -6,9 +6,14 @@
 toe toe;
 struct coords{
     int x = 1;
-    int y = 1;
+    int y = 1;  
     int dir;
-} x_y;
+} x_y;   
+struct coordsAI{
+    int x = 11;
+    int y = 15;  
+} AIx_y;
+
 coords walk_to(int dir){
     x_y.dir = dir;
     switch(dir){
@@ -83,6 +88,45 @@ class hats{
                         usleep(SPEED);
                         toe.out(x_y.x, x_y.y);
                         toe.toe_e[x_y.y][i] = '.'; 
+                    }
+                break;
+            }
+        }
+        void attack(int damage, coordsAI AIx_y, int dir){
+            switch(dir){
+                case 0:
+                    for(int i = AIx_y.y - 1; i > 0; i--){
+                        toe.toe_e[i][AIx_y.x] = '@';
+                        usleep(SPEED);
+                        toe.out(AIx_y.x, AIx_y.y);
+                        toe.toe_e[i][AIx_y.x] = '.';
+                    }
+                break;
+
+                case 1:
+                    for(int i = AIx_y.y + 1; i < 6; i++){
+                        toe.toe_e[i][AIx_y.x] = '@';
+                        usleep(SPEED);
+                        toe.out(AIx_y.x, AIx_y.y);
+                        toe.toe_e[i][AIx_y.x] = '.';
+                    }
+                break;
+
+                case 2:
+                    for(int i = AIx_y.x - 1; i > 0; i--){
+                        toe.toe_e[AIx_y.y][i] = '@';
+                        usleep(SPEED);
+                        toe.out(AIx_y.x, AIx_y.y);
+                        toe.toe_e[AIx_y.y][i] = '.';                
+                    }
+                break;
+
+                case 3:
+                    for(int i = AIx_y.x + 1; i < 12; i++){
+                        toe.toe_e[AIx_y.y][i] = '@';
+                        usleep(SPEED);
+                        toe.out(AIx_y.x, AIx_y.y);
+                        toe.toe_e[AIx_y.y][i] = '.'; 
                     }
                 break;
             }

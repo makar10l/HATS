@@ -3,6 +3,8 @@
 #include "hat.hpp"
 #include "getchar.hpp"
 #include "menu/main_menu.hpp"
+// #include "AI/AI_HAT.hpp"
+
 hats hat;
 int x;
 int y;
@@ -70,6 +72,7 @@ int main(){
         toe.out(x,y);
       }
       toe.out(x,y);
+      system("clear");
     }
     return 0;
 }

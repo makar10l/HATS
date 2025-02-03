@@ -198,7 +198,7 @@ class AI{
             }
         }       
     }
-    short search_dir(int plX, int plY){
+    short search_dir(int plX, int plY, int AIx, int AIy){
         short dir = 999;
         if(AIy == plY){
             if(AIx > plX){
@@ -219,8 +219,9 @@ class AI{
         }  
         return dir;     
     }
-    void walkAI(int playerX, int playerY){
-        short dir = search_dir(0, 0);
+    int walkAI(int playerX, int playerY){
+        int dir1;
+        short dir = search_dir(playerX, playerY, AIx, AIy);
         if(dir != 999){
             fight();
         }
@@ -233,21 +234,136 @@ class AI{
             }
             short copyX = AIx;
             short copyY = AIy;
-            for(int x = 0; x < X_SIZE - 1; x++){
-                copyX++;
-                int dir = search_dir(0,0);
-                if(dir == 2){
-                    AIx--;
-                    break;
+            if(copyX <= X_SIZE-2 || copyX != 0){
+                if(copyX < X_SIZE - 3){
+                    copyX++;                   
+                    switch(search_dir(playerX,playerY, copyX, copyY)){
+                        case 0:
+                            dir1 = 0;
+                            return dir1;
+                        break;
+                        case 1:
+                            dir1 = 1;
+                            return dir1;
+                        break;
+                        case 2:
+                            dir1 = 2;
+                            return dir1;
+                        break;
+                        case 3:
+                            dir1 = 3;
+                            return dir1;
+                        break;
+                       
+                    }
+                    copyX--;                    
+                    switch(search_dir(playerX,playerY, copyX, copyY)){
+                        case 0:
+                            dir1 = 0;
+                            return dir1;
+                        break;
+                        case 1:
+                            dir1 = 1;
+                            return dir1;
+                        break;
+                        case 2:
+                            dir1 = 2;
+                            return dir1;
+                        break;
+                        case 3:
+                            dir1 = 3;
+                            return dir1;
+                        break;
+                    }
                 }
-                if(dir == 3){
-                    AIy++;
+
+                copyX++;                   
+                switch(search_dir(playerX,playerY, copyX, copyY)){
+                    case 0:
+                        dir1 = 0;
+                        return dir1;
                     break;
-                }
-                if(dir == 0){
+                    case 1:
+                        dir1 = 1;
+                        return dir1;
+                    break;
+                    case 2:
+                        dir1 = 2;
+                        return dir1;
+                    break;
+                    case 3:
+                        dir1 = 3;
+                        return dir1;
+                    break;
                     
                 }
             }
+            if(copyY <= Y_SIZE-2 || copyY != 0){
+                if(copyY < Y_SIZE - 3){
+                    copyY++;                   
+                    switch(search_dir(playerX,playerY, copyX, copyY)){
+                        case 0:
+                            dir1 = 0;
+                            return dir1;
+                        break;
+                        case 1:
+                            dir1 = 1;
+                            return dir1;
+                        break;
+                        case 2:
+                            dir1 = 2;
+                            return dir1;
+                        break;
+                        case 3:
+                            dir1 = 3;
+                            return dir1;
+                        break;
+                       
+                    }
+                    copyY--;                    
+                    switch(search_dir(playerX,playerY, copyX, copyY)){
+                        case 0:
+                            dir1 = 0;
+                            return dir1;
+                        break;
+                        case 1:
+                            dir1 = 1;
+                            return dir1;
+                        break;
+                        case 2:
+                            dir1 = 2;
+                            return dir1;
+                        break;
+                        case 3:
+                            dir1 = 3;
+                            return dir1;
+                        break;
+                    }
+                }
+
+                copyY++;                   
+                switch(search_dir(playerX,playerY, copyX, copyY)){
+                    case 0:
+                        dir1 = 0;
+                        return dir1;
+                    break;
+                    case 1:
+                        dir1 = 1;
+                        return dir1;
+                    break;
+                    case 2:
+                        dir1 = 2;
+                        return dir1;
+                    break;
+                    case 3:
+                        dir1 = 3;
+                        return dir1;
+                    break;
+                    
+                }
+            }
+            }
+            
         }       
-    }
+        
 };

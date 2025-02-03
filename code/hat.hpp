@@ -2,6 +2,9 @@
 #include "toe.hpp"
 #include <unistd.h>
 #include <ctime>
+#define X_SIZE 13
+#define Y_SIZE 7
+
 #define SPEED 500000
 toes toe;
 struct coords{
@@ -172,26 +175,79 @@ class AI{
                 break;
             }
         }
-    char fight(){
+    void fight(){
         short dir;
         if(AIy == x_y.y){
             if(AIx > x_y.x){
                 dir = 2;
+                attack(damage, AIx, AIy, dir);
             }
             if(AIx < x_y.x){
                 dir = 3;
+                attack(damage, AIx, AIy, dir);
             }
         }
         else if(AIx == x_y.x){
             if(AIy > x_y.y){
                 dir = 0;
+                attack(damage, AIx, AIy, dir);
             }
             if(AIy > x_y.y){
                 dir = 1;
+                attack(damage, AIx, AIy, dir);
+            }
+        }       
+    }
+    short search_dir(int plX, int plY){
+        short dir = 999;
+        if(AIy == plY){
+            if(AIx > plX){
+                dir = 2;
+            }
+            if(AIx < plX){
+                dir = 3;
             }
         }
-        std::cout << dir << ":DIR";
-        attack(damage, AIx, AIy, dir);       
+        else if(AIx == plX){
+            if(AIy > plY){
+                dir = 0;
+            }
+            if(AIy > plY){
+                dir = 1;
+
+            }
+        }  
+        return dir;     
     }
-    
+    void walkAI(int playerX, int playerY){
+        short dir = search_dir(0, 0);
+        if(dir != 999){
+            fight();
+        }
+        else{
+            char copy_toe[Y_SIZE-2][X_SIZE-2];
+            for(int y = 1; y < Y_SIZE-1; y++){
+                for(int x = 1; x < X_SIZE-1; x++){
+                    copy_toe[y][x] = toe.toe_e[y][x];
+                }
+            }
+            short copyX = AIx;
+            short copyY = AIy;
+            for(int x = 0; x < X_SIZE - 1; x++){
+                copyX++;
+                int dir = search_dir(0,0);
+                if(dir == 2){
+                    AIx--;
+                    break;
+                }
+                if(dir == 3){
+                    AIy++;
+                    break;
+                }
+                if(dir == 0){
+                    
+                }
+            }
+        }       
+    }
 };

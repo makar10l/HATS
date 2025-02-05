@@ -108,8 +108,8 @@ class hats{
 }; 
 class AI{
     public:
-    int AIx = 11;
-    int AIy = 5;
+    int AIx = 5;// 0 + rand() % 11;
+    int AIy = 4;//0 + rand()  % 5;
     int hp;
     int damage;
     std::string texture;

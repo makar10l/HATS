@@ -45,7 +45,7 @@ int main(){
 
     while(1){
       int point = 0;
-      toe0.out();
+      toe0.out(x,y, hatAI.AIx,hatAI.AIy);
       int dir;
       std::cout << "Choice DIRECTION:";
       std::cin >> dir;

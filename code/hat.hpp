@@ -175,33 +175,37 @@ class AI{
                 break;
             }    
     }
-    char search(toes toe){
+    char search(toes toe, int y){
         int cloneY = AIy;
-        for(; cloneY > 0; cloneY--){
-            for(int x = AIx; x > 0; x--){
-                if(toe.toe_e[cloneY][x] == '0')
-                {
-                    // if(AIy == cloneY){
-                    //     attack(damage, AIx, AIy, 2);
-                    // }
-                    // else{
-                        AIy--;
-                    // }
-                }
-            }
-        }
-        for(; cloneY > 5; cloneY--){
-            for(int x = AIx; x > 0; x--){
-                if(toe.toe_e[cloneY][x] == '0')
-                {
+        if(y < AIy){
+            for(; cloneY > 0; cloneY--){
+                for(int x = AIx; x > 0; x--){
+                    if(toe.toe_e[cloneY][x] == '0')
+                    {
                         // if(AIy == cloneY){
                         //     attack(damage, AIx, AIy, 2);
                         // }
                         // else{
-                            AIy++;
+                            AIy--;
                         // }
+                    }
                 }
             }
         }
+        else if(y > AIy){
+            for(; cloneY < 6; cloneY++){
+                for(int x = AIx; x > 0; x--){
+                    if(toe.toe_e[cloneY][x] == '0')
+                    {
+                            // if(AIy == cloneY){
+                            //     attack(damage, AIx, AIy, 2);
+                            // }
+                            // else{
+                                AIy++;
+                            // }
+                    }
+                }
+            }
+        } 
     }
 };

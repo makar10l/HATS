@@ -47,7 +47,7 @@ int main(){
       int point = 0;
       toe0.out(x,y, hatAI.AIx,hatAI.AIy);
       int dir;
-      hatAI.search(toe0);
+      
       std::cout << "Choice DIRECTION:";
       std::cin >> dir;
       if(dir == 0 || dir == 1 || dir == 2 || dir == 3 && point < 1){
@@ -74,6 +74,7 @@ int main(){
         fight(toe0);
         toe0.out(x,y,hatAI.AIx,hatAI.AIy);
       }
+      hatAI.search(toe0, y);
       toe0.out(x,y,hatAI.AIx,hatAI.AIy);
     }
     return 0;

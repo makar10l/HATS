@@ -47,14 +47,15 @@ int main(){
       int point = 0;
       toe0.out(x,y, hatAI.AIx,hatAI.AIy);
       int dir;
+      hatAI.search(toe0);
       std::cout << "Choice DIRECTION:";
       std::cin >> dir;
       if(dir == 0 || dir == 1 || dir == 2 || dir == 3 && point < 1){
           coords xy = walk_to(dir);
           x = xy.x;
           y = xy.y;
-          point++;
           int guess;
+          point++;
           toe0.out(x,y, hatAI.AIx, hatAI.AIy);
           std::cout << "\n\nDo you want to attack?(yes=1 no=0)?"; 
           std::cin >> guess;
@@ -73,7 +74,6 @@ int main(){
         fight(toe0);
         toe0.out(x,y,hatAI.AIx,hatAI.AIy);
       }
-      hatAI.fight();
       toe0.out(x,y,hatAI.AIx,hatAI.AIy);
     }
     return 0;

@@ -175,8 +175,33 @@ class AI{
                 break;
             }    
     }
-
-    void walk(){
-        ;
+    char search(toes toe){
+        int cloneY = AIy;
+        for(; cloneY > 0; cloneY--){
+            for(int x = AIx; x > 0; x--){
+                if(toe.toe_e[cloneY][x] == '0')
+                {
+                    // if(AIy == cloneY){
+                    //     attack(damage, AIx, AIy, 2);
+                    // }
+                    // else{
+                        AIy--;
+                    // }
+                }
+            }
+        }
+        for(; cloneY > 5; cloneY--){
+            for(int x = AIx; x > 0; x--){
+                if(toe.toe_e[cloneY][x] == '0')
+                {
+                        // if(AIy == cloneY){
+                        //     attack(damage, AIx, AIy, 2);
+                        // }
+                        // else{
+                            AIy++;
+                        // }
+                }
+            }
+        }
     }
 };

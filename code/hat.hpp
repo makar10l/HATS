@@ -5,7 +5,6 @@
 #define X_SIZE 13
 #define Y_SIZE 7
 
-#define SPEED 500000
 toes toe;
 struct coords{
     int x = 1;
@@ -48,13 +47,14 @@ coords walk_to(int dir){
     }
     return x_y;
 }
+
 class hats{      
     public:
         int hp;
         int damage;
         std::string texture;
         std::string texture_cp;
-        void attack(int damage, int x, int y, short dir){
+        void attack_long(int damage, int x, int y, int dir){
             switch(dir){
                 case 0:
                     for(int i = y - 1; i > 0; i--){
@@ -91,6 +91,53 @@ class hats{
                         toe.toe_e[y][i] = '.'; 
                     }
                 break;
+            }
+        }
+        void attack_short(int damage, int x, int y, int dir){
+            switch(dir){
+                case 0:
+                    for(int i = y - 1; i > y-3; i--){
+                        toe.toe_e[i][x] = '@';                       
+                        toe.out(x, y);
+                        toe.toe_e[i][x] = '.';
+                        usleep(SPEED);
+                    }
+                break;
+
+                case 1:
+                    for(int i = x_y.y + 1; i > i+2; i++){
+                        toe.toe_e[i][x] = '@';
+                        usleep(SPEED);
+                        toe.out(x, y);
+                        toe.toe_e[i][x] = '.';
+                    }
+                break;
+
+                case 2:
+                    for(int i = x - 1; i > i-2; i--){
+                        toe.toe_e[y][i] = '@';
+                        usleep(SPEED);
+                        toe.out(x, y);
+                        toe.toe_e[y][i] = '.';                
+                    }
+                break;
+
+                case 3:
+                    for(int i = x_y.x + 1; i < i+2; i++){
+                        toe.toe_e[y][i] = '@';
+                        usleep(SPEED);
+                        toe.out(x, y);
+                        toe.toe_e[y][i] = '.'; 
+                    }
+                break;
+            }
+        }
+        void attack(int damage, int x, int y, short dir, short mode){
+            if(mode == 1){
+                attack_long(damage, x, y, dir);
+            }
+            if(mode == 0){
+                attack_short(damage, x, y, dir);
             }
         }
          

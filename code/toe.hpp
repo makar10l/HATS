@@ -1,6 +1,7 @@
 #define X_SIZE 13
 #define Y_SIZE 7
 
+#define SPEED 500000
 class toes{
         public:
                 char toe_e[Y_SIZE][X_SIZE] = {

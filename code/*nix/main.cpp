@@ -12,7 +12,7 @@ int fight(toes toe){
   toe.out(x,y, hatAI.AIx,hatAI.AIy);
   std::cout << "Enter DIRECTION bullet:";
   std::cin >> direct;
-  hat.attack(10, x, y, direct, 0);
+  hat.attack(10, x, y, direct, 1);
   return 0;
 }
 

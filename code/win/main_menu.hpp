@@ -1,20 +1,21 @@
 #include <iostream>
 #include <string>
-#include "windows.h"
+#include <windows.h>
+#include <conio.h>
 std::string menu(){
         while(1){
-            system("clear");
+            system("cls");
             std::cout << "\t\t\tPress Q to quit" << std::endl;
             std::cout << "\t\t\tPress P to play" << std::endl;
-            int ch = _getch();
+            char ch = getch();
             if(ch == 'q'){
                 return "quit";
             }
-            if(ch == 112){
-                system("clear");
+            if(ch == 'p'){
+                system("cls");
                 std::cout << "Choice your HAT:";
                 std::cout << "\n\nf=farmer hat, j = joker hat, s = santa hat";
-                ch = _getch();
+                ch = getch();
                 switch(ch){
                     case 'f':
                     return "farmer";

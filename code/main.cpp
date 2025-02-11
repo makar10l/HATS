@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
-#include "getchar.hpp"
-#include "menu/main_menu.hpp"
+#include "main_menu.hpp"
 #include "hat.hpp"
 AI hatAI;
 hats hat;

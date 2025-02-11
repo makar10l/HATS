@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+#include "libs/makar10l.hpp"
 std::string menu(){
         while(1){
             system("clear");

@@ -73,7 +73,7 @@ int main(){
         fight(toe0);
         toe0.out(x,y,hatAI.AIx,hatAI.AIy);
       }
-      hatAI.search(toe0, y);
+      hatAI.walkAI(toe0, y, x);
       toe0.out(x,y,hatAI.AIx,hatAI.AIy);
     }
     return 0;

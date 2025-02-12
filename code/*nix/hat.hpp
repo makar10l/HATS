@@ -222,8 +222,9 @@ class AI{
                 break;
             }    
     }
-    char search(toes toe, int y){
+    char walkAI(toes toe, int y, int x){
         int cloneY = AIy;
+        int cloneX = AIx;
         if(y < AIy){
             for(; cloneY > 0; cloneY--){
                 for(int x = AIx; x > 0; x--){
@@ -253,6 +254,12 @@ class AI{
                     }
                 }
             }
+        }
+        else if(x > cloneX){
+            AIx++;
+        } 
+        else if(x < cloneX){
+            AIx--;
         } 
     }
 };

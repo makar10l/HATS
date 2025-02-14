@@ -2,6 +2,7 @@
 #include <string>
 #include "main_menu.hpp"
 #include "hat.hpp"
+
 AI hatAI;
 hats hat;
 

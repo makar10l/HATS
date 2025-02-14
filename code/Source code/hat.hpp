@@ -3,7 +3,7 @@
 #include <ctime>
 #define X_SIZE 13
 #define Y_SIZE 7
-#define SPEED 0.4
+const float SPEED = 0.4;
 toes toe;
 struct coords{
     int x = 1;
@@ -58,7 +58,7 @@ class hats{
                 case 0:
                     for(int i = y - 1; i > 0; i--){
                         toe.toe_e[i][x] = '@';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                         toe.out(x, y);
                         toe.toe_e[i][x] = '.';
                     }
@@ -67,7 +67,7 @@ class hats{
                 case 1:
                     for(int i = x_y.y + 1; i < 6; i++){
                         toe.toe_e[i][x] = '@';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                         toe.out(x, y);
                         toe.toe_e[i][x] = '.';
                     }
@@ -76,7 +76,7 @@ class hats{
                 case 2:
                     for(int i = x - 1; i > 0; i--){
                         toe.toe_e[y][i] = '@';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                         toe.out(x, y);
                         toe.toe_e[y][i] = '.';                
                     }
@@ -85,7 +85,7 @@ class hats{
                 case 3:
                     for(int i = x_y.x + 1; i < 12; i++){
                         toe.toe_e[y][i] = '@';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                         toe.out(x, y);
                         toe.toe_e[y][i] = '.'; 
                     }
@@ -99,14 +99,14 @@ class hats{
                         toe.toe_e[i][x] = '@';                       
                         toe.out(x, y);
                         toe.toe_e[i][x] = '.';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                     }
                 break;
 
                 case 1:
                     for(int i = x_y.y + 1; i > i+2; i++){
                         toe.toe_e[i][x] = '@';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                         toe.out(x, y);
                         toe.toe_e[i][x] = '.';
                     }
@@ -115,7 +115,7 @@ class hats{
                 case 2:
                     for(int i = x - 1; i > i-2; i--){
                         toe.toe_e[y][i] = '@';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                         toe.out(x, y);
                         toe.toe_e[y][i] = '.';                
                     }
@@ -124,7 +124,7 @@ class hats{
                 case 3:
                     for(int i = x_y.x + 1; i < i+2; i++){
                         toe.toe_e[y][i] = '@';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                         toe.out(x, y);
                         toe.toe_e[y][i] = '.'; 
                     }
@@ -187,7 +187,7 @@ class AI{
                 case 0:
                     for(int i = y - 1; i > 0; i--){
                         toe.toe_e[i][x] = '@';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                         toe.out(x, y, AIx,AIy);
                         toe.toe_e[i][x] = '.';
                     }
@@ -196,7 +196,7 @@ class AI{
                 case 1:
                     for(int i = y + 1; i < 6; i++){
                         toe.toe_e[i][x] = '@';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                         toe.out(x, y, AIx, AIy);
                         toe.toe_e[i][x] = '.';
                     }
@@ -205,7 +205,7 @@ class AI{
                 case 2:
                     for(int i = x - 1; i > 0; i--){
                         toe.toe_e[y][i] = '@';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                         toe.out(x, y, AIx, AIy);
                         toe.toe_e[y][i] = '.';                
                     }
@@ -214,7 +214,7 @@ class AI{
                 case 3:
                     for(int i = x + 1; i < 12; i++){
                         toe.toe_e[y][i] = '@';
-                        _sleep(SPEED);
+                        sleep(SPEED);
                         toe.out(x, y, AIx, AIy);
                         toe.toe_e[y][i] = '.'; 
                     }

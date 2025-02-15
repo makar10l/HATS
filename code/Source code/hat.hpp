@@ -221,7 +221,7 @@ class AI{
                 break;
             }    
     }
-    char walkAI(toes toe, int y, int x){
+    void walkAI(toes toe, int y, int x){
         int cloneY = AIy;
         int cloneX = AIx;
         if(y < AIy){

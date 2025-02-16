@@ -42,7 +42,16 @@ int main(){
         hat.hp = 25;
         hat.damage = 15;       
     }
-
+    clear();
+    std::cout << "\t\tINFO:\n\n";
+    sleep(SPEED);
+    print("ITS YOUR HAT\n\n");
+    hat.info(hat.hp, hat.damage);
+    sleep(SPEED);
+    clear();
+    print("ITS AI HAT\n\n");
+    hatAI.info();
+    sleep(SPEED);
     while(1){
       int point = 0;
       toe0.out(x,y, hatAI.AIx,hatAI.AIy);
@@ -63,12 +72,6 @@ int main(){
             toe0.out(x,y, hatAI.AIx, hatAI.AIy);
             fight(toe0);
           }
-      }
-      else if(dir == 9){
-        hat.info(hat.hp, hat.damage);
-        getch();
-        getch();        
-        toe0.out(x,y,hatAI.AIx, hatAI.AIy);
       }
       else{
         fight(toe0);

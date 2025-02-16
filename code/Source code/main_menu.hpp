@@ -13,6 +13,15 @@ std::string menu(){
                 }
                 if(ch == 'p'){
                     clear();
+                    std::cout << "\t\tMOVEMENT:\n\n";
+                    std::cout << "\t\t     0    \n";
+                    std::cout << "\t\t     ^    \n";
+                    std::cout << "\t\t2  < | > 3   \n";
+                    std::cout << "\t\t     ^    \n";
+                    std::cout << "\t\t     1    \n";
+                    std::cout << "\t\t GUN -> 5\n";
+                    getch();
+                    clear();
                     std::cout << "Choice your HAT:";
                     std::cout << "\n\nf=farmer hat, j = joker hat, s = santa hat";
                     ch = getch();
@@ -36,6 +45,15 @@ std::string menu(){
                 }
                 if(ch == 112){
                     clear();
+                    std::cout << "\t\tMOVEMENT:\n\n";
+                    std::cout << "\t\t     0    \n";
+                    std::cout << "\t\t     ^    \n";
+                    std::cout << "\t\t2  < | > 3  \n";
+                    std::cout << "\t\t     ^    \n";
+                    std::cout << "\t\t     1    \n";
+                    std::cout << "\t\t GUN -> 5\n";
+                    getch();
+                    clear();
                     std::cout << "Choice your HAT:";
                     std::cout << "\n\nf=farmer hat, j = joker hat, s = santa hat";
                     ch = getch();
@@ -53,5 +71,6 @@ std::string menu(){
                     }
                 }
             #endif
+            
         }
 }

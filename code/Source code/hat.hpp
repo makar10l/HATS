@@ -158,29 +158,43 @@ class AI{
     int AIy = 5;
     int hp;
     int damage;
+    void info(){
+        std::cout << "\t\tTHIS IS YOUR HAT:\n\n" << texture_cp;
+        std::cout << "\nYour HAT HP:" << hp << std::endl;
+        std::cout << "Your HAT damage:" << damage << std::endl;
+    }
     std::string texture;
     std::string texture_cp;
     AI(){
-        int texte = 0 + rand() % 2;
+        int texte;
+        bool textur = true;
+        while(textur){
+        srand(time(0));
+        texte = 0 + rand() % 4;
         switch(texte){
-                case 0:
+                case 1:
                     texture = farm_hat;
                     texture_cp = farm_hat_copy;
                     hp = 75;
                     damage = 5;
-                
-                case 1:
+                    textur = !textur;
+                    break;
+                case 2:
                     hp = 1;
                     texture = joke_hat;
                     texture_cp = joke_hat_copy;
                     damage = 100; 
-                
-                case 2:
+                    textur = !textur;
+                    break;
+                case 3:
                     texture = santas_hat;
                     texture_cp = santas_hat_copy;
                     hp = 25;
-                    damage = 15;  
-        } 
+                    damage = 15;
+                    textur = !textur;
+                    break;                 
+            } 
+        }
     }
     void attack(int damage, int x, int y, short dir){
             switch(dir){

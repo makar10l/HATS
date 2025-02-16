@@ -42,7 +42,7 @@ coords walk_to(int dir){
         case 3:
             if(x_y.x < 11){
                 toe.toe_e[x_y.y][x_y.x] = '.';
-                x_y.x++;
+                x_y.x = x_y.x + 1;
                 toe.toe_e[x_y.y][x_y.x] = '0';
             }
             break;
@@ -54,10 +54,16 @@ coords walk_to(int dir){
 
 class hats{      
     public:
+        toes toe;
         int hp;
         int damage;
         std::string texture;
         std::string texture_cp;
+        void init_hat(char _hat, toes toe){
+            switch(_hat){
+                case 'f'
+            }
+        }
         void attack_long(int damage, int x, int y, int dir){
             switch(dir){
                 case 0:

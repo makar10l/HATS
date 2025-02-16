@@ -11,7 +11,7 @@ char menu(){
             #ifdef WIN32
                 char ch = getch();
                 if(ch == 'q'){
-                    return "quit";
+                    return 'q';
                 }
                 if(ch == 'p'){
                     clear();

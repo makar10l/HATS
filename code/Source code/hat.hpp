@@ -1,68 +1,48 @@
 #include "textures/textures.h"
 #include "toe.hpp"
 #include <ctime>
-#define X_SIZE 13
-#define Y_SIZE 7
-const float SPEED = 1;
+const float SPEED = 0.1;
 int modegunAI;
-toes toe;
 struct coords{
     int x = 1;
     int y = 1;  
     int dir;
 } x_y;   
 
-toes _return(){
-    return toe;
-} 
-coords walk_to(int dir){
-    x_y.dir = dir;
-    switch(dir){
-        case 0:
-            if(x_y.y >= 2){
-                toe.toe_e[x_y.y][x_y.x] = '.';
-                x_y.y--;
-                toe.toe_e[x_y.y][x_y.x] = '0';
-            }
-            break;
-        case 1:
-            if(x_y.y < 5){
-                toe.toe_e[x_y.y][x_y.x] = '.';
-                x_y.y++;
-                toe.toe_e[x_y.y][x_y.x] = '0';
-            }
-            break;
-        case 2:
-            if(x_y.x >= 2){
-                toe.toe_e[x_y.y][x_y.x] = '.';           
-                x_y.x--;
-                toe.toe_e[x_y.y][x_y.x] = '0';
-            }
-            break;
-        case 3:
-            if(x_y.x < 11){
-                toe.toe_e[x_y.y][x_y.x] = '.';
-                x_y.x = x_y.x + 1;
-                toe.toe_e[x_y.y][x_y.x] = '0';
-            }
-            break;
-        default:
-        std::cout << "wrong dir";
-    }
-    return x_y;
-}
-
 class hats{      
     public:
         toes toe;
         int hp;
         int damage;
+        int modegun;
         std::string texture;
         std::string texture_cp;
-        void init_hat(char _hat, toes toe){
+        void init_hat(char _hat, toes toe0){
             switch(_hat){
-                case 'f'
+                case 'f':
+                    texture = farm_hat;
+                    texture_cp = farm_hat_copy;
+                    hp = 75;
+                    damage = 5;
+                    modegun = 0;
+                break;
+
+                case 'j':
+                    hp = 1;
+                    texture = joke_hat;
+                    texture_cp = joke_hat_copy;
+                    damage = 100;        
+                    modegun = 0;
+                break;
+                case 's':
+                    texture = santas_hat;
+                    texture_cp = santas_hat_copy;
+                    hp = 25;
+                    damage = 15; 
+                    modegun = 1;
+                break;
             }
+            toe = toe0;
         }
         void attack_long(int damage, int x, int y, int dir){
             switch(dir){
@@ -76,7 +56,7 @@ class hats{
                 break;
 
                 case 1:
-                    for(int i = y + 1; i < 6; i++){
+                    for(int i = y + 1; i < Y_SIZE-1; i++){
                         toe.toe_e[i][x] = '@';                       
                         toe.out(x, y);
                         toe.toe_e[i][x] = '.';
@@ -93,7 +73,7 @@ class hats{
                 break;
 
                 case 3:
-                    for(int i = x + 1; i < 12; i++){
+                    for(int i = x + 1; i < X_SIZE-1; i++){
                         toe.toe_e[y][i] = '@';                       
                         toe.out(x, y);
                         toe.toe_e[y][i] = '.';
@@ -151,7 +131,42 @@ class hats{
             }
         }
          
-        
+        coords walk_to(int dir){
+            x_y.dir = dir;
+            switch(dir){
+                case 0:
+                    if(x_y.y >= 2){
+                        toe.toe_e[x_y.y][x_y.x] = '.';
+                        x_y.y--;
+                        toe.toe_e[x_y.y][x_y.x] = '0';
+                    }
+                    break;
+                case 1:
+                    if(x_y.y < Y_SIZE-2){
+                        toe.toe_e[x_y.y][x_y.x] = '.';
+                        x_y.y++;
+                        toe.toe_e[x_y.y][x_y.x] = '0';
+                    }
+                    break;
+                case 2:
+                    if(x_y.x >= 2){
+                        toe.toe_e[x_y.y][x_y.x] = '.';           
+                        x_y.x--;
+                        toe.toe_e[x_y.y][x_y.x] = '0';
+                    }
+                    break;
+                case 3:
+                    if(x_y.x < X_SIZE-2){
+                        toe.toe_e[x_y.y][x_y.x] = '.';
+                        x_y.x = x_y.x + 1;
+                        toe.toe_e[x_y.y][x_y.x] = '0';
+                    }
+                    break;
+                default:
+                std::cout << "wrong dir";
+            }
+            return x_y;
+        }
     void break_hat(int* hp, int damage){
         *hp -= damage;
         std::cout << "Your HAT start broking, HP your HAT:" << *hp << std::endl;
@@ -165,6 +180,7 @@ class hats{
 }; 
 class AI{
     public:
+    hats hat;
     int AIx = 11;
     int AIy = 5;
     int hp;
@@ -176,7 +192,7 @@ class AI{
     }
     std::string texture;
     std::string texture_cp;
-    AI(){
+    void init(hats hat0){
         int texte;
         bool textur = true;
         while(textur){
@@ -209,40 +225,45 @@ class AI{
                     break;                 
             } 
         }
+        hat = hat0;
+        hat.toe.toe_e[Y_SIZE-1][X_SIZE-1] = '*';
+    }
+    void upd(hats hat0){
+        hat = hat0;
     }
     void attack_long(int damage, int x, int y, int dir){
         switch(dir){
             case 0:
                 for(int i = y - 1; i > 0; i--){
-                    toe.toe_e[i][x] = '@';                       
-                    toe.out(x, y,AIx,AIy);
-                    toe.toe_e[i][x] = '.';
+                    hat.toe.toe_e[i][x] = '@';                       
+                    hat.toe.out();
+                    hat.toe.toe_e[i][x] = '.';
                     sleep(SPEED);
                 }
             break;
 
             case 1:
-                for(int i = y + 1; i < 6; i++){
-                    toe.toe_e[i][x] = '@';                       
-                    toe.out(x, y,AIx,AIy);
-                    toe.toe_e[i][x] = '.';
+                for(int i = y + 1; i < Y_SIZE-1; i++){
+                    hat.toe.toe_e[i][x] = '@';                       
+                    hat.toe.out();
+                    hat.toe.toe_e[i][x] = '.';
                     sleep(SPEED);
                 }
             break;
             case 2:
                 for(int i = x - 1; i > 0; i--){
-                    toe.toe_e[y][i] = '@';                        
-                    toe.out(x, y,AIx,AIy);
-                    toe.toe_e[y][i] = '.';
+                    hat.toe.toe_e[y][i] = '@';                        
+                    hat.toe.out();
+                    hat.toe.toe_e[y][i] = '.';
                     sleep(SPEED);                
                 }
             break;
 
             case 3:
                 for(int i = x + 1; i < 12; i++){
-                    toe.toe_e[y][i] = '@';                       
-                    toe.out(x, y,AIx,AIy);
-                    toe.toe_e[y][i] = '.';
+                    hat.toe.toe_e[y][i] = '@';                       
+                    hat.toe.out();
+                    hat.toe.toe_e[y][i] = '.';
                     sleep(SPEED); 
                 }
             break;
@@ -252,9 +273,9 @@ class AI{
         switch(dir){
             case 0:
                 for(int i = y - 1; i >= y-2; i--){
-                    toe.toe_e[i][x] = '@';                       
-                    toe.out(x, y,AIx,AIy);
-                    toe.toe_e[i][x] = '.';
+                    hat.toe.toe_e[i][x] = '@';                       
+                    hat.toe.out();
+                    hat.toe.toe_e[i][x] = '.';
                     sleep(SPEED);
                     
                 }
@@ -262,27 +283,27 @@ class AI{
 
             case 1:
                 for(int i = x_y.y + 1; i <= y+2; i++){
-                    toe.toe_e[i][x] = '@';                        
-                    toe.out(x, y,AIx,AIy);
-                    toe.toe_e[i][x] = '.';
+                    hat.toe.toe_e[i][x] = '@';                        
+                    hat.toe.out();
+                    hat.toe.toe_e[i][x] = '.';
                     sleep(SPEED);
                 }
             break;
 
             case 2:
                 for(int i = x - 1; i >= x-2; i--){
-                    toe.toe_e[y][i] = '@';                       
-                    toe.out(x, y,AIx,AIy);
-                    toe.toe_e[y][i] = '.';
+                    hat.toe.toe_e[y][i] = '@';                       
+                    hat.toe.out();
+                    hat.toe.toe_e[y][i] = '.';
                     sleep(SPEED);                
                 }
             break;
 
             case 3:
                 for(int i = x_y.x + 1; i <= x+2; i++){
-                    toe.toe_e[y][i] = '@';
-                    toe.out(x, y,AIx,AIy);
-                    toe.toe_e[y][i] = '.'; 
+                    hat.toe.toe_e[y][i] = '@';
+                    hat.toe.out();
+                    hat.toe.toe_e[y][i] = '.'; 
                     sleep(SPEED);
                 }
             break;
@@ -296,13 +317,13 @@ class AI{
             attack_short(damage, x, y, dir);
         }
     }
-    void walkAI(toes toe, int y, int x){
+    void walkAI(int y, int x){
         int cloneY = AIy;
         int cloneX = AIx;
         if(y < AIy){
             for(; cloneY > 0; cloneY--){
                 for(int x = AIx; x > 0; x--){
-                    if(toe.toe_e[cloneY][x] == '0')
+                    if(hat.toe.toe_e[cloneY][x] == '0')
                     {
                         if(AIy == cloneY){
                             attack(damage, AIx, AIy, 2, modegunAI);
@@ -317,7 +338,7 @@ class AI{
         else if(y > AIy){
             for(; cloneY < 6; cloneY++){
                 for(int x = AIx; x > 0; x--){
-                    if(toe.toe_e[cloneY][x] == '0')
+                    if(hat.toe.toe_e[cloneY][x] == '0')
                     {
                             if(AIy == cloneY){
                                 attack(damage, AIx, AIy, 2, modegunAI);
@@ -337,3 +358,11 @@ class AI{
         } 
     }
 };
+int fight(hats hat, int x, int y){
+    int direct;
+    hat.toe.out();
+    std::cout << "Enter DIRECTION bullet:";
+    std::cin >> direct;
+    hat.attack(10, x, y, direct, hat.modegun);
+    return 0;
+  }

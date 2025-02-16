@@ -1,13 +1,17 @@
 #include <iostream>
 #include <string>
 #include "main_menu.hpp"
-#include "hat.hpp"
-int main(){
-    toes toe0 = _return();
-    toe0.toe_e[1][1] = '0';
-    walk_to(1);
-    toe0.out();
-    // toe0.toe_e[1][1] = '.';
-    // toe0.toe_e[1][2] = '0';
-    toe0.out();
+#include "game_loop.hpp"
+AI hatAI;
+hats hat;
+toes toe0;
+
+
+
+int main(){      
+    char mode = menu();
+    hat.init_hat(mode, toe0);
+    hatAI.init(hat);
+    main_info(hat, hatAI);
+    game_loop(hatAI, hat);
 }

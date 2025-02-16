@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
 #include "libs/makar10l.cpp"
-std::string menu(){
+#include "hat.hpp"
+const float speed_menu = 1.0;
+char menu(){
         while(1){
             clear();
             std::cout << "\t\t\tPress Q to quit" << std::endl;
@@ -27,13 +29,13 @@ std::string menu(){
                     ch = getch();
                     switch(ch){
                         case 'f':
-                        return "farmer";
+                        return 'f';
                         break;
                         case 'j':
-                        return "joker";
+                        return 'j';
                         break;
                         case 's':
-                        return "santa";
+                        return 's';
                         break;
                     
                     }
@@ -41,7 +43,7 @@ std::string menu(){
             #else
                 int ch = getch();
                 if(ch == 113){
-                    return "quit";
+                    return 'q';
                 }
                 if(ch == 112){
                     clear();
@@ -59,13 +61,13 @@ std::string menu(){
                     ch = getch();
                     switch(ch){
                         case 102:
-                        return "farmer";
+                        return 'f';
                         break;
                         case 106:
-                        return "joker";
+                        return 'j';
                         break;
                         case 115:
-                        return "santa";
+                        return 's';
                         break;
                     
                     }
@@ -73,4 +75,16 @@ std::string menu(){
             #endif
             
         }
+}
+void main_info(hats hat, AI hatAI){
+    clear();
+    std::cout << "\t\tINFO:\n\n";
+    sleep(speed_menu);
+    print("ITS YOUR HAT\n\n");
+    hat.info(hat.hp, hat.damage);
+    sleep(speed_menu);
+    clear();
+    print("ITS AI HAT\n\n");
+    hatAI.info();
+    sleep(speed_menu);
 }

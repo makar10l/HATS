@@ -3,7 +3,7 @@
 #include <ctime>
 #define X_SIZE 13
 #define Y_SIZE 7
-const float SPEED = 0.4;
+const float SPEED = 1;
 toes toe;
 struct coords{
     int x = 1;
@@ -57,45 +57,6 @@ class hats{
             switch(dir){
                 case 0:
                     for(int i = y - 1; i > 0; i--){
-                        toe.toe_e[i][x] = '@';
-                        sleep(SPEED);
-                        toe.out(x, y);
-                        toe.toe_e[i][x] = '.';
-                    }
-                break;
-
-                case 1:
-                    for(int i = x_y.y + 1; i < 6; i++){
-                        toe.toe_e[i][x] = '@';
-                        sleep(SPEED);
-                        toe.out(x, y);
-                        toe.toe_e[i][x] = '.';
-                    }
-                break;
-
-                case 2:
-                    for(int i = x - 1; i > 0; i--){
-                        toe.toe_e[y][i] = '@';
-                        sleep(SPEED);
-                        toe.out(x, y);
-                        toe.toe_e[y][i] = '.';                
-                    }
-                break;
-
-                case 3:
-                    for(int i = x_y.x + 1; i < 12; i++){
-                        toe.toe_e[y][i] = '@';
-                        sleep(SPEED);
-                        toe.out(x, y);
-                        toe.toe_e[y][i] = '.'; 
-                    }
-                break;
-            }
-        }
-        void attack_short(int damage, int x, int y, int dir){
-            switch(dir){
-                case 0:
-                    for(int i = y - 1; i > y-3; i--){
                         toe.toe_e[i][x] = '@';                       
                         toe.out(x, y);
                         toe.toe_e[i][x] = '.';
@@ -104,29 +65,68 @@ class hats{
                 break;
 
                 case 1:
-                    for(int i = x_y.y + 1; i > i+2; i++){
-                        toe.toe_e[i][x] = '@';
-                        sleep(SPEED);
+                    for(int i = y + 1; i < 6; i++){
+                        toe.toe_e[i][x] = '@';                       
                         toe.out(x, y);
                         toe.toe_e[i][x] = '.';
+                        sleep(SPEED);
                     }
                 break;
-
                 case 2:
-                    for(int i = x - 1; i > i-2; i--){
-                        toe.toe_e[y][i] = '@';
-                        sleep(SPEED);
+                    for(int i = x - 1; i > 0; i--){
+                        toe.toe_e[y][i] = '@';                        
                         toe.out(x, y);
-                        toe.toe_e[y][i] = '.';                
+                        toe.toe_e[y][i] = '.';
+                        sleep(SPEED);                
                     }
                 break;
 
                 case 3:
-                    for(int i = x_y.x + 1; i < i+2; i++){
-                        toe.toe_e[y][i] = '@';
+                    for(int i = x + 1; i < 12; i++){
+                        toe.toe_e[y][i] = '@';                       
+                        toe.out(x, y);
+                        toe.toe_e[y][i] = '.';
+                        sleep(SPEED); 
+                    }
+                break;
+            }
+        }
+        void attack_short(int damage, int x, int y, int dir){
+            switch(dir){
+                case 0:
+                    for(int i = y - 1; i >= y-2; i--){
+                        toe.toe_e[i][x] = '@';                       
+                        toe.out(x, y);
+                        toe.toe_e[i][x] = '.';
                         sleep(SPEED);
+                        
+                    }
+                break;
+
+                case 1:
+                    for(int i = x_y.y + 1; i <= y+2; i++){
+                        toe.toe_e[i][x] = '@';                        
+                        toe.out(x, y);
+                        toe.toe_e[i][x] = '.';
+                        sleep(SPEED);
+                    }
+                break;
+
+                case 2:
+                    for(int i = x - 1; i >= x-2; i--){
+                        toe.toe_e[y][i] = '@';                       
+                        toe.out(x, y);
+                        toe.toe_e[y][i] = '.';
+                        sleep(SPEED);                
+                    }
+                break;
+
+                case 3:
+                    for(int i = x_y.x + 1; i <= x+2; i++){
+                        toe.toe_e[y][i] = '@';
                         toe.out(x, y);
                         toe.toe_e[y][i] = '.'; 
+                        sleep(SPEED);
                     }
                 break;
             }

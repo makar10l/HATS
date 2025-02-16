@@ -23,7 +23,7 @@ class toes{
         }
         void out(int x, int y, int xAI, int yAI){
                 clear();
-                reset(x,y, xAI, yAI);
+                //reset(x,y, xAI, yAI);
                 for(int y = 0; y < Y_SIZE; y++){
                 for(int x = 0; x < X_SIZE; x++){
                         std::cout << toe_e[y][x];

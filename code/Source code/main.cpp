@@ -5,6 +5,7 @@
 
 AI hatAI;
 hats hat;
+int modegun;
 
 int x = 1;
 int y = 1;
@@ -13,20 +14,21 @@ int fight(toes toe){
   toe.out(x,y, hatAI.AIx,hatAI.AIy);
   std::cout << "Enter DIRECTION bullet:";
   std::cin >> direct;
-  hat.attack(10, x, y, direct, 0);
+  hat.attack(10, x, y, direct, modegun);
   return 0;
 }
 
 int main(){
     toes toe0 = _return();
-    toe0.out(x,y, hatAI.AIx,hatAI.AIy);   
+    //toe0.out(x,y, hatAI.AIx,hatAI.AIy);   
     std::string mode = menu();
 
     if(mode == "farmer"){
         hat.texture = farm_hat;
         hat.texture_cp = farm_hat_copy;
         hat.hp = 75;
-        hat.damage = 5;        
+        hat.damage = 5;
+        modegun = 0;       
     }
 
     if(mode == "joker"){
@@ -34,13 +36,15 @@ int main(){
         hat.texture = joke_hat;
         hat.texture_cp = joke_hat_copy;
         hat.damage = 100;        
+        modegun = 0;  
     }
 
     if(mode == "santa"){
         hat.texture = santas_hat;
         hat.texture_cp = santas_hat_copy;
         hat.hp = 25;
-        hat.damage = 15;       
+        hat.damage = 15; 
+        modegun = 1;        
     }
     clear();
     std::cout << "\t\tINFO:\n\n";
@@ -77,7 +81,7 @@ int main(){
         fight(toe0);
         toe0.out(x,y,hatAI.AIx,hatAI.AIy);
       }
-      hatAI.walkAI(toe0, y, x);
+      //hatAI.walkAI(toe0, y, x);
       toe0.out(x,y,hatAI.AIx,hatAI.AIy);
     }
 }

@@ -2,6 +2,6 @@
 
 git clone https://github.com/makar10l/libs
 
-g++ main.cpp -o build
+g++ main.cpp -o HATS
 
 rm -rf libs

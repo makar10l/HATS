@@ -1,3 +1,5 @@
-func menu:
-    choice hat
-    tutorial(micro)
+Menu for game(HAAATS).
+functional:
+Hello.) (coming soon)
+choice haaaat))))
+mini tutorial(movement)

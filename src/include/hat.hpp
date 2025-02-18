@@ -1,24 +1,32 @@
+//FUCKING CODE IDK HOW IT CAN WORKING
 #include "textures/textures.h"
 #include "toe.hpp"
 #include <ctime>
+//speed of bullets
 const float SPEED = 0.1;
+
 int modegunAI;
+//coords for player hat
 struct coords{
     int x = 1;
     int y = 1;  
     int dir;
 } x_y;   
-
+//!!!!CLASS HAT_PLAYER!!!!
 class hats{      
     public:
+    //VARIABLES
         toes toe;
         int hp;
         int damage;
         int modegun;
         std::string texture;
         std::string texture_cp;
+        //init hat
         void init_hat(char _hat, toes toe0){
+            //init texture
             switch(_hat){
+                //farmers hat
                 case 'f':
                     texture = farm_hat;
                     texture_cp = farm_hat_copy;
@@ -26,7 +34,7 @@ class hats{
                     damage = 5;
                     modegun = 0;
                 break;
-
+                //jokers hat
                 case 'j':
                     hp = 1;
                     texture = joke_hat;
@@ -34,6 +42,7 @@ class hats{
                     damage = 100;        
                     modegun = 0;
                 break;
+                //santas hat
                 case 's':
                     texture = santas_hat;
                     texture_cp = santas_hat_copy;
@@ -42,10 +51,13 @@ class hats{
                     modegun = 1;
                 break;
             }
+            //init toe
             toe = toe0;
         }
+
         void attack_long(int damage, int x, int y, int dir){
             switch(dir){
+                //attack to up
                 case 0:
                     for(int i = y - 1; i > 0; i--){
                         toe.toe_e[i][x] = '@';                       
@@ -54,7 +66,7 @@ class hats{
                         sleep(SPEED);
                     }
                 break;
-
+                //attack to down
                 case 1:
                     for(int i = y + 1; i < Y_SIZE-1; i++){
                         toe.toe_e[i][x] = '@';                       
@@ -63,6 +75,7 @@ class hats{
                         sleep(SPEED);
                     }
                 break;
+                //attack to left
                 case 2:
                     for(int i = x - 1; i > 0; i--){
                         toe.toe_e[y][i] = '@';                        
@@ -71,7 +84,7 @@ class hats{
                         sleep(SPEED);                
                     }
                 break;
-
+                //attack to right
                 case 3:
                     for(int i = x + 1; i < X_SIZE-1; i++){
                         toe.toe_e[y][i] = '@';                       
@@ -82,8 +95,10 @@ class hats{
                 break;
             }
         }
+        //short attack
         void attack_short(int damage, int x, int y, int dir){
             switch(dir){
+                //attack to up
                 case 0:
                     for(int i = y - 1; i >= y-2; i--){
                         toe.toe_e[i][x] = '@';                       
@@ -93,7 +108,7 @@ class hats{
                         
                     }
                 break;
-
+                //attack to down
                 case 1:
                     for(int i = x_y.y + 1; i <= y+2; i++){
                         toe.toe_e[i][x] = '@';                        
@@ -102,7 +117,7 @@ class hats{
                         sleep(SPEED);
                     }
                 break;
-
+                //attack to left
                 case 2:
                     for(int i = x - 1; i >= x-2; i--){
                         toe.toe_e[y][i] = '@';                       
@@ -111,7 +126,7 @@ class hats{
                         sleep(SPEED);                
                     }
                 break;
-
+                //attack to right
                 case 3:
                     for(int i = x_y.x + 1; i <= x+2; i++){
                         toe.toe_e[y][i] = '@';
@@ -122,6 +137,7 @@ class hats{
                 break;
             }
         }
+        //check mode attack and start func
         void attack(int damage, int x, int y, short dir, short mode){
             if(mode == 1){
                 attack_long(damage, x, y, dir);
@@ -130,10 +146,12 @@ class hats{
                 attack_short(damage, x, y, dir);
             }
         }
-         
+        //func to walk
         coords walk_to(int dir){
+            //direction
             x_y.dir = dir;
             switch(dir){
+                //walk up
                 case 0:
                     if(x_y.y >= 2){
                         toe.toe_e[x_y.y][x_y.x] = '.';
@@ -141,6 +159,7 @@ class hats{
                         toe.toe_e[x_y.y][x_y.x] = '0';
                     }
                     break;
+                //walk down
                 case 1:
                     if(x_y.y < Y_SIZE-2){
                         toe.toe_e[x_y.y][x_y.x] = '.';
@@ -148,6 +167,7 @@ class hats{
                         toe.toe_e[x_y.y][x_y.x] = '0';
                     }
                     break;
+                //walk left
                 case 2:
                     if(x_y.x >= 2){
                         toe.toe_e[x_y.y][x_y.x] = '.';           
@@ -155,6 +175,7 @@ class hats{
                         toe.toe_e[x_y.y][x_y.x] = '0';
                     }
                     break;
+                //walk right
                 case 3:
                     if(x_y.x < X_SIZE-2){
                         toe.toe_e[x_y.y][x_y.x] = '.';
@@ -178,23 +199,28 @@ class hats{
         std::cout << "Your HAT damage:" << damage << std::endl;
     }
 }; 
+//CLASS AI!!!!!
 class AI{
+    //variables
     public:
     hats hat;
     int AIx = 11;
     int AIy = 5;
     int hp;
     int damage;
+    
+    std::string texture;
+    std::string texture_cp;
     void info(){
         std::cout << "\t\tTHIS IS YOUR HAT:\n\n" << texture_cp;
         std::cout << "\nYour HAT HP:" << hp << std::endl;
         std::cout << "Your HAT damage:" << damage << std::endl;
     }
-    std::string texture;
-    std::string texture_cp;
+    //init hat
     void init(hats hat0){
         int texte;
         bool textur = true;
+        //set texture
         while(textur){
         srand(time(0));
         texte = 0 + rand() % 4;
@@ -226,11 +252,10 @@ class AI{
             } 
         }
         hat = hat0;
+        //set position on toe
         hat.toe.toe_e[Y_SIZE-1][X_SIZE-1] = '*';
     }
-    void upd(hats hat0){
-        hat = hat0;
-    }
+    //see comments for hats::attack_long()
     void attack_long(int damage, int x, int y, int dir){
         switch(dir){
             case 0:
@@ -269,6 +294,7 @@ class AI{
             break;
         }
     }
+    //see comments for hats::attack_short()
     void attack_short(int damage, int x, int y, int dir){
         switch(dir){
             case 0:
@@ -317,9 +343,12 @@ class AI{
             attack_short(damage, x, y, dir);
         }
     }
+    //FUCKING FUNC TO WALK AI
     void walkAI(int y, int x){
+        //SET FUCKING COORDS
         int cloneY = AIy;
         int cloneX = AIx;
+        //ALGORITHM
         if(y < AIy){
             for(; cloneY > 0; cloneY--){
                 for(int x = AIx; x > 0; x--){
@@ -358,6 +387,7 @@ class AI{
         } 
     }
 };
+// SEE FUCKING DOCS
 int fight(hats hat, int x, int y){
     int direct;
     hat.toe.out();

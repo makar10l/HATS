@@ -1,3 +1,2 @@
-in file main:
-    main game loop
-    
+In file include some files, initialization HATS & toe
+Start game

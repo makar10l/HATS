@@ -1,7 +1,0 @@
-#bin/bash
-
-git clone https://github.com/makar10l/libs
-mv libs src/
-g++ main.cpp -o HATS
-
-rm -rf libs

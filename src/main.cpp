@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "main_menu.hpp"
-#include "game_loop.hpp"
+#include "include\main_menu.hpp"
+#include "include\game_loop.hpp"
 AI hatAI;
 hats hat;
 toes toe0;

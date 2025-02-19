@@ -34,4 +34,14 @@ class toes{
                 std::cout << "\n";
                 }
         }
+        void out(int x, int y){
+                clear();
+                toe_e[y][x] = '0';
+                for(int y = 0; y < Y_SIZE; y++){
+                for(int x = 0; x < X_SIZE; x++){
+                        std::cout << toe_e[y][x];
+                }
+                std::cout << "\n";
+                }
+        }
 };

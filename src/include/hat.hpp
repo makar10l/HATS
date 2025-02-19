@@ -216,6 +216,9 @@ class AI{
         std::cout << "\nYour HAT HP:" << hp << std::endl;
         std::cout << "Your HAT damage:" << damage << std::endl;
     }
+    void upd(hats hat0){
+        hat = hat0;
+    }
     //init hat
     void init(hats hat0){
         int texte;

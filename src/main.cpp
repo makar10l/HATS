@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "include\main_menu.hpp"
-#include "include\game_loop.hpp"
+#include "include/main_menu.hpp"
+#include "include/game_loop.hpp"
 //init hats
 AI hatAI;
 hats hat;

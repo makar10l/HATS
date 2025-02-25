@@ -52,7 +52,7 @@ class hats{
                 break;
             }
             //init toe
-            toe = toe0;
+            //toe = toe0;
         }
 
         void attack_long(int damage, int x, int y, int dir){
@@ -259,95 +259,96 @@ class AI{
         hat.toe.toe_e[Y_SIZE-1][X_SIZE-1] = '*';
     }
     //see comments for hats::attack_long()
-    void attack_long(int damage, int x, int y, int dir){
-        switch(dir){
-            case 0:
-                for(int i = y - 1; i > 0; i--){
-                    hat.toe.toe_e[i][x] = '@';                       
-                    hat.toe.out();
-                    hat.toe.toe_e[i][x] = '.';
-                    sleep(SPEED);
-                }
-            break;
+    // void attack_long(int damage, int x, int y, int dir, hats* hat){
+    //     switch(dir){
+    //         case 0:
+    //             for(int i = y - 1; i > 0; i--){
+    //                 *hat.toe.toe_e[i][x] = '@';                       
+    //                 *hat.toe.out();
+    //                 *hat.toe.toe_e[i][x] = '.';
+    //                 sleep(SPEED);
+    //             }
+    //         break;
 
-            case 1:
-                for(int i = y + 1; i < Y_SIZE-1; i++){
-                    hat.toe.toe_e[i][x] = '@';                       
-                    hat.toe.out();
-                    hat.toe.toe_e[i][x] = '.';
-                    sleep(SPEED);
-                }
-            break;
-            case 2:
-                for(int i = x - 1; i > 0; i--){
-                    hat.toe.toe_e[y][i] = '@';                        
-                    hat.toe.out();
-                    hat.toe.toe_e[y][i] = '.';
-                    sleep(SPEED);                
-                }
-            break;
+    //         case 1:
+    //             for(int i = y + 1; i < Y_SIZE-1; i++){
+    //                 *hat.toe.toe_e[i][x] = '@';                       
+    //                 *hat.toe.out();
+    //                 *hat.toe.toe_e[i][x] = '.';
+    //                 sleep(SPEED);
+    //             }
+    //         break;
+    //         case 2:
+    //             for(int i = x - 1; i > 0; i--){
+    //                 *hat.toe.toe_e[y][i] = '@';                        
+    //                 *hat.toe.out();
+    //                 *hat.toe.toe_e[y][i] = '.';
+    //                 sleep(SPEED);                
+    //             }
+    //         break;
 
-            case 3:
-                for(int i = x + 1; i < 12; i++){
-                    hat.toe.toe_e[y][i] = '@';                       
-                    hat.toe.out();
-                    hat.toe.toe_e[y][i] = '.';
-                    sleep(SPEED); 
-                }
-            break;
-        }
-    }
-    //see comments for hats::attack_short()
-    void attack_short(int damage, int x, int y, int dir){
-        switch(dir){
-            case 0:
-                for(int i = y - 1; i >= y-2; i--){
-                    hat.toe.toe_e[i][x] = '@';                       
-                    hat.toe.out();
-                    hat.toe.toe_e[i][x] = '.';
-                    sleep(SPEED);
+    //         case 3:
+    //             for(int i = x + 1; i < 12; i++){
+    //                 *hat.toe.toe_e[y][i] = '@';                       
+    //                 *hat.toe.out();
+    //                 *hat.toe.toe_e[y][i] = '.';
+    //                 sleep(SPEED); 
+    //             }
+    //         break;
+    //     }
+    // }
+    // //see comments for hats::attack_short()
+    // void attack_short(int damage, int x, int y, int dir, hats* hat){
+    //     switch(dir){
+    //         case 0:
+    //             for(int i = y - 1; i >= y-2; i--){
+    //                 *hat.toe.toe_e[i][x] = '@';                       
+    //                 *hat.toe.out();
+    //                 *hat.toe.toe_e[i][x] = '.';
+    //                 sleep(SPEED);
                     
-                }
-            break;
+    //             }
+    //         break;
 
-            case 1:
-                for(int i = x_y.y + 1; i <= y+2; i++){
-                    hat.toe.toe_e[i][x] = '@';                        
-                    hat.toe.out();
-                    hat.toe.toe_e[i][x] = '.';
-                    sleep(SPEED);
-                }
-            break;
+    //         case 1:
+    //             for(int i = x_y.y + 1; i <= y+2; i++){
+    //                 *hat.toe.toe_e[i][x] = '@';                        
+    //                 *hat.toe.out();
+    //                 *hat.toe.toe_e[i][x] = '.';
+    //                 sleep(SPEED);
+    //             }
+    //         break;
 
-            case 2:
-                for(int i = x - 1; i >= x-2; i--){
-                    hat.toe.toe_e[y][i] = '@';                       
-                    hat.toe.out();
-                    hat.toe.toe_e[y][i] = '.';
-                    sleep(SPEED);                
-                }
-            break;
+    //         case 2:
+    //             for(int i = x - 1; i >= x-2; i--){
+    //                 *hat.toe.toe_e[y][i] = '@';                       
+    //                 *hat.toe.out();
+    //                 *hat.toe.toe_e[y][i] = '.';
+    //                 sleep(SPEED);                
+    //             }
+    //         break;
 
-            case 3:
-                for(int i = x_y.x + 1; i <= x+2; i++){
-                    hat.toe.toe_e[y][i] = '@';
-                    hat.toe.out();
-                    hat.toe.toe_e[y][i] = '.'; 
-                    sleep(SPEED);
-                }
-            break;
-        }
-    }
-    void attack(int damage, int x, int y, short dir, short mode){
-        if(mode == 1){
-            attack_long(damage, x, y, dir);
-        }
-        if(mode == 0){
-            attack_short(damage, x, y, dir);
-        }
-    }
+    //         case 3:
+    //             for(int i = x_y.x + 1; i <= x+2; i++){
+    //                 *hat.toe.toe_e[y][i] = '@';
+    //                 *hat.toe.out();
+    //                 *hat.toe.toe_e[y][i] = '.'; 
+    //                 sleep(SPEED);
+    //             }
+    //         break;
+    //     }
+    // }
+    // void attack(int damage, int x, int y, short dir, short mode, hats* hat){
+    //     if(mode == 1){
+    //         attack_long(damage, x, y, dir, hat);
+    //     }
+    //     if(mode == 0){
+    //         attack_short(damage, x, y, dir, hat);
+    //     }
+    // }
     //FUCKING FUNC TO WALK AI
-    void walkAI(int y, int x){
+    void walkAI(int y, int x, hats* hat0){
+        hats hat = *hat0;
         //SET FUCKING COORDS
         int cloneY = AIy;
         int cloneX = AIx;
@@ -358,9 +359,10 @@ class AI{
                     if(hat.toe.toe_e[cloneY][x] == '0')
                     {
                         if(AIy == cloneY){
-                            attack(damage, AIx, AIy, 2, modegunAI);
+                           // attack(damage, AIx, AIy, 2, modegunAI, hat);
                         }
                         else{
+                            hat.toe.toe_e[AIy][AIx] = '.';
                             AIy--;
                         }
                     }
@@ -373,9 +375,10 @@ class AI{
                     if(hat.toe.toe_e[cloneY][x] == '0')
                     {
                             if(AIy == cloneY){
-                                attack(damage, AIx, AIy, 2, modegunAI);
+                              // attack(damage, AIx, AIy, 2, modegunAI, hat);
                             }
                             else{
+                                hat.toe.toe_e[AIy][AIx] = '.';
                                 AIy++;
                             }
                     }
@@ -383,11 +386,14 @@ class AI{
             }
         }
         else if(x > cloneX){
+            hat.toe.toe_e[AIy][AIx] = '.';
             AIx++;
         } 
         else if(x < cloneX){
+            hat.toe.toe_e[AIy][AIx] = '.';
             AIx--;
         } 
+        *hat0 = hat;
     }
 };
 // SEE FUCKING DOCS

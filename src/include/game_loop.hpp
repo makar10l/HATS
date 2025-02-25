@@ -29,7 +29,7 @@ void game_loop(AI hatAI, hats hat){
           hat.toe.out();
         }
         hatAI.upd(hat);
-        hatAI.walkAI(y, x);
+        hatAI.walkAI(y, x, &hat);
         hat.toe.out();
       }
 }

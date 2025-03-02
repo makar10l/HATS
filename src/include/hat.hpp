@@ -274,7 +274,7 @@ class AI{
             case 1:
                 for(int i = y + 1; i < Y_SIZE-1; i++){
                     hat0.toe.toe_e[i][x] = '@';                       
-                    hat0.toe.out(x, y);
+                    hat0.toe.out();
                     hat0.toe.toe_e[i][x] = '.';
                     sleep(SPEED);
                 }
@@ -283,7 +283,7 @@ class AI{
             case 2:
                 for(int i = x - 1; i > 0; i--){
                     hat0.toe.toe_e[y][i] = '@';                        
-                    hat0.toe.out(x, y);
+                    hat0.toe.out();
                     hat0.toe.toe_e[y][i] = '.';
                     sleep(SPEED);                
                 }
@@ -292,7 +292,7 @@ class AI{
             case 3:
                 for(int i = x + 1; i < X_SIZE-1; i++){
                     hat0.toe.toe_e[y][i] = '@';                       
-                    hat0.toe.out(x, y);
+                    hat0.toe.out();
                     hat0.toe.toe_e[y][i] = '.';
                     sleep(SPEED); 
                 }
@@ -370,7 +370,7 @@ class AI{
         //                 }
         //                 else{
         //                     //hat.toe.toe_e[AIy][AIx] = '.';
-        //                     //AIy--;
+        //                    // AIy--;
         //                 }
         //             }
         //         }
@@ -385,22 +385,25 @@ class AI{
         //                       attack(damage, AIx, AIy, 2, modegunAI, &hat);
         //                     }
         //                     else{
-        //                         hat.toe.toe_e[AIy][AIx] = '.';
-        //                         AIy++;
+        //                         //hat.toe.toe_e[AIy][AIx] = '.';
+        //                         //AIy++;
         //                     }
         //             }
         //         }
         //     }
         // }
         // else if(x > cloneX){
-        //     //hat.toe.toe_e[AIy][AIx] = '.';
-        //    // AIx++;
+        //     hat.toe.toe_e[AIy][AIx] = '.';
+        //     AIx++;
+        //     if(x - AIx >= 3){
+        //         attack(damage, AIx, AIy, 3, modegunAI, &hat);
+        //     }
         // } 
         // else if(x < cloneX){
-        //     //hat.toe.toe_e[AIy][AIx] = '.';
-        //     //AIx--;
+        //     hat.toe.toe_e[AIy][AIx] = '.';
+        //     AIx--;
         // } 
-        
+        attack(damage, AIx, AIy, 2, modegunAI, &hat);
         *hat0 = hat;
     }
 };

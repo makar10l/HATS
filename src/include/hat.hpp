@@ -360,49 +360,49 @@ class AI{
         int cloneY = AIy;
         int cloneX = AIx;
         //ALGORITHM
-        // if(y < AIy){
-        //     for(; cloneY > 0; cloneY--){
-        //         for(int x = AIx; x > 0; x--){
-        //             if(hat.toe.toe_e[cloneY][x] == '0')
-        //             {
-        //                 if(AIy == cloneY){
-        //                    attack(damage, AIx, AIy, 2, modegunAI, &hat);
-        //                 }
-        //                 else{
-        //                     //hat.toe.toe_e[AIy][AIx] = '.';
-        //                    // AIy--;
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-        // else if(y > AIy){
-        //     for(; cloneY < 6; cloneY++){
-        //         for(int x = AIx; x > 0; x--){
-        //             if(hat.toe.toe_e[cloneY][x] == '0')
-        //             {
-        //                     if(AIy == cloneY){
-        //                       attack(damage, AIx, AIy, 2, modegunAI, &hat);
-        //                     }
-        //                     else{
-        //                         //hat.toe.toe_e[AIy][AIx] = '.';
-        //                         //AIy++;
-        //                     }
-        //             }
-        //         }
-        //     }
-        // }
-        // else if(x > cloneX){
-        //     hat.toe.toe_e[AIy][AIx] = '.';
-        //     AIx++;
-        //     if(x - AIx >= 3){
-        //         attack(damage, AIx, AIy, 3, modegunAI, &hat);
-        //     }
-        // } 
-        // else if(x < cloneX){
-        //     hat.toe.toe_e[AIy][AIx] = '.';
-        //     AIx--;
-        // } 
+         if(y < AIy){
+             for(; cloneY > 0; cloneY--){
+                 for(int x = AIx; x > 0; x--){
+                    if(hat.toe.toe_e[cloneY][x] == '0')
+                     {
+                         if(AIy == cloneY){
+                            attack(damage, AIx, AIy, 2, modegunAI, &hat);
+                         }
+                         else{
+                             //hat.toe.toe_e[AIy][AIx] = '.';
+                            // AIy--;
+                         }
+                     }
+                 }
+             }
+         }
+         else if(y > AIy){
+             for(; cloneY < 6; cloneY++){
+                 for(int x = AIx; x > 0; x--){
+                     if(hat.toe.toe_e[cloneY][x] == '0')
+                     {
+                             if(AIy == cloneY){
+                           attack(damage, AIx, AIy, 2, modegunAI, &hat);
+                            }
+                            else{
+                               hat.toe.toe_e[AIy][AIx] = '.';
+                               AIy++;
+                            }
+                     }
+                 }
+             }
+         }
+         else if(x > cloneX){
+             hat.toe.toe_e[AIy][AIx] = '.';
+             AIx++;
+             if(x - AIx >= 3){
+                 attack(damage, AIx, AIy, 3, modegunAI, &hat);
+             }
+         } 
+         else if(x < cloneX){
+             hat.toe.toe_e[AIy][AIx] = '.';
+             AIx--;
+        } 
         attack(damage, AIx, AIy, 2, modegunAI, &hat);
         *hat0 = hat;
     }

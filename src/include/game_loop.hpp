@@ -10,7 +10,7 @@ void game_loop(AI hatAI, hats hat){
         int dir;
         std::cout << "Choice DIRECTION:";
         std::cin >> dir;
-        if(dir == 0 || dir == 1 || dir == 2 || dir == 3 && point < 1){
+        if(dir >= 0 && dir < 4 && point < 1){
             coords xy = hat.walk_to(dir);
             x = xy.x;
             y = xy.y;
@@ -31,5 +31,5 @@ void game_loop(AI hatAI, hats hat){
         hatAI.upd(hat);
         hatAI.walkAI(y, x, &hat);
         hat.toe.out();
-      }
+      } 
 }
